@@ -5,8 +5,7 @@
 int main()
 {
     int option = 1, flag = NULL, position = NULL, search_astronaut = 0, search_ship = 0, search_mission = 0;
-    while ( option == 1 )
-    {
+    while ( option == 1 ) {
         printf ( "Bienvenido!\n" );
         draw_mainmenu();
         scanf ( "%d", &option );

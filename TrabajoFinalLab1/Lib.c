@@ -1,7 +1,57 @@
 #include "Lib.h"
-//aca van las Funciones
 
+//aca van las funciones
+void register_astronaut()
+{
+    STastronaut user;
+    int flag = NULL;
+	int opcion = 1;
+	while ( opcion == 1 ) {
+		printf ( "Nombre del astronauta:\n" );
+		fflush(stdin);
+		gets ( user.name );
+		printf ( "Apellido del astronauta:\n" );
+		fflush(stdin);
+		gets ( user.last_name );
+		printf ( "Apodo del astronauta:\n" );
+		fflush(stdin);
+		gets ( user.nickname );
+		printf ( "Su ID:\n" );
+		scanf ( "%d", &user.ID );
+        //crear la funcion de validar que no se repitan las ID de astronautas
+        if ( flag == NULL ) {
+            printf ( "" );
+        }
+		printf ( "Su edad:\n" );
+		scanf ( "%d", &user.age );
+		printf ( "Nacionalidad:\n" );
+		fflush(stdin);
+		gets ( user.nationality );
+		printf ( "Especialidad:\n" );
+		fflush(stdin);
+		gets ( user.speciality );
+		printf ( "Horas de vuelo acumuladas:\n" );
+		scanf ( "%d", &user.hours_flight );
+		printf ( "Cantidad de misiones en las que ha participado:\n" );
+		scanf ( "%d", &user.missions );
+		printf ( "Horas invertidas en la estacion espacial:\n" );
+		scanf ( "%d", &user.hours_at_spaceStation );
+		user.status = 1; //lo registra automaticamente en 'activo'
+        save_astronaut(user);
+		printf ( "para registrar otro astronauta ingrese 1:\n" );
+		scanf ( "%d", &opcion );
+	}
+}
 
+void save_astronaut(STastronaut user)
+{
+    FILE *file = fopen(Fastronauts, "ab");
+	if ( file != NULL ) {
+		fwrite(&user, sizeof(STastronaut), 1, file);
+		fclose(file);
+	}
+
+}
 void draw_mainmenu()
 {
     system("cls");

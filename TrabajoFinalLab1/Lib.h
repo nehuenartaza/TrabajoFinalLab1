@@ -1,7 +1,10 @@
 #include <stdio.h>
 #define dimInt 15
 #define dimChar 50
-//Aca van los prototipados y estructuras
+#define Fastronauts "astronauts.bin"
+#define Fships "ships.bin"
+#define Fmissions "missions.bin"
+//aca van los prototipados y estructuras
 
 
 typedef struct {
@@ -9,7 +12,7 @@ typedef struct {
 	char last_name[dimChar];
 	char nickname[dimChar];
 	int ID;
-	int edad;
+	int age;
 	char nationality[dimChar];
 	char speciality[dimChar];
 	int hours_flight;
