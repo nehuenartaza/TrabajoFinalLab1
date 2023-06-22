@@ -50,4 +50,3 @@ typedef struct {
 	char details_of_mission[dimChar]; //breve descripcion
 	int ammount_crewmans;
 } STmission;
-
