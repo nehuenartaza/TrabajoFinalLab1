@@ -3,8 +3,9 @@
 #define dimChar 50
 #define Fastronauts "astronauts.bin"
 #define Fships "ships.bin"
-#define Fmissions "missions.bin" //HOLA
+#define Fmissions "missions.bin"
 //aca van los prototipados y estructuras
+
 
 
 typedef struct {

@@ -1,10 +1,11 @@
 #include "Lib.h"
 
+
 //aca van las funciones
 void register_astronaut()
 {
     STastronaut user;
-    int flag = NULL; //HOLA
+    int flag = NULL;
 	int opcion = 1;
 	while ( opcion == 1 ) {
 		printf ( "Nombre del astronauta:\n" );
