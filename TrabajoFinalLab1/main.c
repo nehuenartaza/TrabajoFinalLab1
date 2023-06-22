@@ -14,21 +14,41 @@ int main()
         case 1:
             system("cls");
             drawmenu_1();
+            scanf ( "%d", &option );
+            switch ( option ) {
+            case 1:
+                register_astronaut();
+                break;
+
+            case 2:
+
+                break;
+
+            case 3:
+
+                break;
+
+            case 4:
+                system("cls");
+            }
             break;
 
         case 2:
             system("cls");
             drawmenu_2();
+            scanf ( "%d", &option );
             break;
 
         case 3:
             system("cls");
             drawmenu_3();
+            scanf ( "%d", &option );
             break;
 
         case 4:
             system("cls");
             drawmenu_4();
+            scanf ( "%d", &option );
             break;
 
         case 0:
@@ -46,15 +66,3 @@ int main()
 
     return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-

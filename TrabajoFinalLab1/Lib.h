@@ -5,8 +5,20 @@
 #define Fships "ships.bin"
 #define Fmissions "missions.bin"
 //aca van los prototipados y estructuras
+void register_astronaut();
+void save_astronaut(STastronaut);
+int confirm_astronaut_ID(int);
+void modify_astronauts();
+void show_astronauts();
 
 
+
+
+void draw_mainmenu();
+void drawmenu_1();
+void drawmenu_2();
+void drawmenu_3();
+void drawmenu_4();
 
 typedef struct {
 	char name[dimChar];
