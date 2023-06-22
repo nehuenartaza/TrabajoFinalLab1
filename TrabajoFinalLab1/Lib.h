@@ -3,7 +3,7 @@
 #define dimChar 50
 #define Fastronauts "astronauts.bin"
 #define Fships "ships.bin"
-#define Fmissions "missions.bin"
+#define Fmissions "missions.bin" //HOLA
 //aca van los prototipados y estructuras
 
 

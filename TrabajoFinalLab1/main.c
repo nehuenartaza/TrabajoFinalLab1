@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "Lib.h"
-int main()
+int main() //Hola
 {
     int option = 1, flag = NULL, position = NULL, search_astronaut = 0, search_ship = 0, search_mission = 0;
     while ( option == 1 ) {
