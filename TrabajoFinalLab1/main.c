@@ -2,18 +2,15 @@
 #include <stdlib.h>
 #include <string.h>
 #include "Lib.h"
-
-
 int main()
 {
-    int opcion = 1, flag = NULL, posicion = NULL, search_astronauta = 0, search_nave = 0, search_mision = 0;
-    while ( opcion == 1 )
+    int option = 1, flag = NULL, position = NULL, search_astronaut = 0, search_ship = 0, search_mission = 0;
+    while ( option == 1 )
     {
         printf ( "Bienvenido!\n" );
-        drawmenu_principal();
-        scanf ( "%d", &opcion );
-        switch ( opcion )
-        {
+        draw_mainmenu();
+        scanf ( "%d", &option );
+        switch ( option ) {
         case 1:
             system("cls");
             drawmenu_1();
@@ -35,7 +32,7 @@ int main()
             break;
 
         case 0:
-            opcion == 0;
+            option = 0;
             system("cls");
             break;
 
@@ -49,6 +46,12 @@ int main()
 
     return 0;
 }
+
+
+
+
+
+
 
 
 

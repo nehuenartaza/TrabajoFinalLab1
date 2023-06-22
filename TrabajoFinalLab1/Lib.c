@@ -2,9 +2,7 @@
 //aca van las Funciones
 
 
-
-
-void drawmenu_principal()
+void draw_mainmenu()
 {
     system("cls");
     printf ( "1- Registrar\n" );
