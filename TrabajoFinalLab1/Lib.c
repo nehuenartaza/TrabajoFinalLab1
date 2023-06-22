@@ -4,7 +4,7 @@
 void register_astronaut()
 {
     STastronaut user;
-    int flag = NULL;
+    int flag = NULL; //HOLA
 	int opcion = 1;
 	while ( opcion == 1 ) {
 		printf ( "Nombre del astronauta:\n" );
