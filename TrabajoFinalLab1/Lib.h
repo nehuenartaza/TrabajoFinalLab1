@@ -33,7 +33,7 @@ typedef struct
     char type[dimChar]; //1-Starship, 2-Falcon 9, 3-Falcon Heavy
     int ammount_flights;
     int hours_flight;
-    int status; //1 lista para su uso, 2 en mision,  3 en mantenimiento, 4 de baja
+    int status; //1 lista para su uso, 2 en mision, 3 en mantenimiento, 4 de baja
 } stStarship;
 
 typedef struct
@@ -92,8 +92,8 @@ void changeFlyTime(int ID, int time_fly);                           // Cambia el
 void changeFlyTimebyUser(int ID);                                   // Solicita un tiempo sin restricciones, por si se quisiese modificar un error de ingreso restando horas
 void showFlyTime(int ID);                                           // Muestra el tiempo de vuelo por ID
 void showAmmountFlys(int ID);                                       // Muestra la cantidad de vuelos
-void changeAmmounFlys(int ID, int times_fly);                       // Cambia la cantidad de vuelos
-void changeAmmounFlysbyUser(int ID);                                // Solicita una cantidad sin restricciones, por si se quisiese modificar un error de ingreso restando horas
+void changeAmmountFlys(int ID, int times_fly);                      // Cambia la cantidad de vuelos
+void changeAmmountFlysbyUser(int ID);                               // Solicita una cantidad sin restricciones, por si se quisiese modificar un error de ingreso restando horas
 
 
 //Misiones
