@@ -1,6 +1,6 @@
 #include "Lib.h"
 #include <unistd.h>
-bool proceduralText = true;
+
 //aca van las funciones
 
 //Astronautas
@@ -1141,7 +1141,7 @@ void pprintf(const char *str)
 {
     int i = 0;
 
-    if (proceduralText)
+    if (proceduralTextRead())
     {
         while (str[i] != '\0')
         {
@@ -1178,11 +1178,137 @@ bool firstSpaceShip()
 
     return firstOne;
 }
+//UsuarioData
+void changeColor()
+{
+    int option;
+    int maxColors = 5;
 
+    do
+    {
+        textColorsOptions();
+        scanf("%i", &option);
+        colorOption(option);
+    }
+    while (option < 1 || option > maxColors);
+
+    saveColorChange(option);
+}
+
+void setColor(int colorCode)
+{
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hConsole, colorCode);
+}
+
+void textColorsOptions()
+{
+    pprintf("Seleccione un color:\n");
+    setColor(FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+    pprintf("1. Azul\n");
+    setColor(FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+    pprintf("2. Verde\n");
+    setColor(FOREGROUND_RED | FOREGROUND_INTENSITY);
+    pprintf("3. Rojo\n");
+    setColor(FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_INTENSITY);
+    pprintf("4. Amarillo\n");
+    setColor(FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+    pprintf("5. Blanco\n");
+    readUserData();
+    pprintf("Ingrese su opcion: ");
+}
+
+void colorOption(int option)
+{
+    switch (option)
+    {
+    case 1:
+        setColor(FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+        break;
+    case 2:
+        setColor(FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+        break;
+    case 3:
+        setColor(FOREGROUND_RED | FOREGROUND_INTENSITY);
+        break;
+    case 4:
+        setColor(FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_INTENSITY);
+        break;
+    case 5:
+        setColor(FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+        break;
+
+    default:
+        system("cls");
+        pprintf("Opcion invalida\n");
+        break;
+    }
+}
+
+void saveColorChange(int colorChoosed)
+{
+    stUserData userData;
+    userData.proceduralText = proceduralTextRead();
+    userData.consoleColor = colorChoosed;
+    FILE* archive = fopen(FuserData, "w+b");
+
+    if (archive != NULL)
+    {
+        fwrite(&userData, sizeof(userData), 1, archive);
+        fclose(archive);
+        pprintf("Eleccion de color guardada con exito.\n");
+    }
+    else
+    {
+        pprintf("No se pudo abrir el archivo para guardar la eleccion de color.\n");
+    }
+}
+
+
+void readUserData()
+{
+    stUserData userData;
+    int color;
+
+    FILE* archive;
+    archive = fopen(FuserData, "rb");
+    if (archive == NULL)
+    {
+        archive = fopen(FuserData, "w+b");
+        if (archive != NULL)
+        {
+            stUserData userData;
+            userData.consoleColor = 1;
+            userData.proceduralText = true;
+            fwrite(&userData, sizeof(stUserData), 1, archive);
+            fclose(archive);
+        }
+    }
+    else
+    {
+        fread(&userData, sizeof(stUserData), 1, archive);
+        color = userData.consoleColor;
+        colorOption(color);
+        fclose(archive);
+    }
+}
+
+bool proceduralTextRead()
+{
+    stUserData userData;
+
+    FILE * archive;
+    archive = fopen(FuserData, "rb");
+    if(archive != NULL)
+    {
+        fread(&userData, sizeof(userData), 1, archive);
+        fclose(archive);
+    }
+    return userData.proceduralText;
+}
 
 //Menus
 void textMainMenu(){
-
 
 
 

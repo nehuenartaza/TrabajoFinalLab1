@@ -1,12 +1,14 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdbool.h>
+#include <windows.h>
 //Constantes
 #define dimInt 15
 #define dimChar 50
 #define Fastronauts "astronautsData.bin"
 #define Fstarships "starshipsData.bin"
 #define Fmissions "missionsData.bin"
+#define FuserData "userData.bin"
 //aca van los prototipados y estructuras
 
 //Estructuras
@@ -45,6 +47,13 @@ typedef struct
     char details_of_mission[dimChar]; //breve descripcion
     int ammount_crewmans;
 } stMission;
+
+typedef struct{
+int consoleColor;
+bool proceduralText;
+
+
+}stUserData;
 
 //Astronautas
 void RegisterAstronaut();
@@ -103,13 +112,17 @@ void ShowMissions();
 int GetLastMissionID();
 
 //Menu
-void draw_mainmenu();
-void drawmenu_1();
-void drawmenu_2();
-void drawmenu_3();
-void drawmenu_4();
 
 
 //Otros
 void pprintf(const char *str);
 bool firstSpaceShip();
+
+//Otros-> UserData
+void changeColor();                                 //A - Permite cambiar el color de la consola se anexan las funciones A -
+void textColorsOptions();                           //A - Muestra las Opciones de colores
+void setColor(int colorCode);                       //A - Aplica uno de los colores
+void colorOption(int option);                       //A - Aplica en un Switch el color elegido por parametro
+void saveColorChange(int colorChoosed);             //A - Salva la eleccion del usuario
+void readUserData();                                //  Busca los datos del usuario, si existe los aplica, si no, los crea por defecto
+bool proceduralTextRead();                          //  Lee el registro del usuario, si este desea el texto procedural habilitado, retorna true, caso contrario, false

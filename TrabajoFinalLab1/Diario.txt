@@ -37,3 +37,14 @@ void changeAmmounFlysbyUser(int ID);
 
 23/06 - 16:25
 Eloy Elimino el menu.
+23/06 19:00-
+
+Eloy creo las funciones:
+void changeColor();                                 //A - Permite cambiar el color de la consola se anexan las funciones A -
+void textColorsOptions();                           //A - Muestra las Opciones de colores
+void setColor(int colorCode);                       //A - Aplica uno de los colores
+void colorOption(int option);                       //A - Aplica en un Switch el color elegido por parametro
+void saveColorChange(int colorChoosed);             //A - Salva la eleccion del usuario
+void readUserData();                                //  Busca los datos del usuario, si existe los aplica, si no, los crea por defecto
+bool proceduralTextRead();                          //  Lee el registro del usuario, si este desea el texto procedural habilitado, retorna true, caso contrario, false
+Creacion de documentacion tipo HTML para mejor navegacion e implementacion
