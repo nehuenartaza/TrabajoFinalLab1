@@ -23,3 +23,14 @@ show_missions a ShowMissions
 STastronaut a stAstronaut
 STmission a stMission
 Además ahora los prototipados están ordenados y comentados para facilitar su búsqueda, las funciones también están ahora separadas por comentarios para facilitar la búsqueda
+
+23/06- 16:20 - 
+Eloy realizo la creacion de las siguientes funciones
+void showSpaceship(int ID);
+void printAllStarships();
+void changeFlyTime(int ID, int time_fly);
+void changeFlyTimebyUser(int ID);
+void showFlyTime(int ID);
+void showAmmountFlys(int ID);
+void changeAmmounFlys(int ID, int times_fly);
+void changeAmmounFlysbyUser(int ID);

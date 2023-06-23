@@ -31,7 +31,7 @@ typedef struct
     char type[dimChar]; //1-Starship, 2-Falcon 9, 3-Falcon Heavy
     int ammount_flights;
     int hours_flight;
-    int status; //0-mantenimiento, 1-lista para usar, 2-en uso, 3-de baja
+    int status; //1 lista para su uso, 2 en mision,  3 en mantenimiento, 4 de baja
 } stStarship;
 
 typedef struct
@@ -67,15 +67,25 @@ int AstronautAvailability(int);
 int GetLastAstronautID();
 
 //Naves
-void saveStarship(stStarship starship);
-void changeStarshipType();
-void registerStarship();
-int getLastStarshipID();
-void changeStarshipType(char starshipName[]);
-int changeStarshipStatus();
-void searchSpaceshipByID();
-bool starshipExistByID(int ID);
-void printSpaceshipData(stStarship starship);
+void saveStarship(stStarship starship);                             // Guarda en la ultima posicion del archivo la nave recibida por parametro
+void registerStarship();                                            // Carga de datos y en archivo una nueva nave. Con parametros en automatico
+int getLastStarshipID();                                            // Obtiene la ultima ID del registro
+void changeStarshipType(char starshipName[]);                       // Cambia el tipo de nave
+int changeStarshipStatus();                                         // Retorna el estado de la nave elegida: 1 lista para su uso, 2 en mision, 3 en mantenimiento, 4 de baja
+void searchSpaceshipByID();                                         // Verifica si la nave existe, la busca y permite modificar sus datos o visualizarla
+void showSpaceship(int ID);                                         // Muestra una nave por su ID
+bool starshipExistByID(int ID);                                     // Retorna verdadero si la nave existe en el archivo en base al ID recibido
+void printSpaceshipData(stStarship starship);                       // Imprime por pantalla los datos de la nave
+void printStarshipStatus(int starshipStatus);                       // Imprime el estado de la nave: 1-mantenimiento, 2-lista para usar, 2-en uso, 3-de baja
+int starshipStatus(int ID);                                         // Retorna el estado de la nave
+void printAllStarships();                                           // Muestra todas las naves cargadas en el archivo
+void changeFlyTime(int ID, int time_fly);                           // Cambia el tiempo de vuelo
+void changeFlyTimebyUser(int ID);                                   // Solicita un tiempo sin restricciones, por si se quisiese modificar un error de ingreso restando horas
+void showFlyTime(int ID);                                           // Muestra el tiempo de vuelo por ID
+void showAmmountFlys(int ID);                                       // Muestra la cantidad de vuelos
+void changeAmmounFlys(int ID, int times_fly);                       // Cambia la cantidad de vuelos
+void changeAmmounFlysbyUser(int ID);                                // Solicita una cantidad sin restricciones, por si se quisiese modificar un error de ingreso restando horas
+
 
 //Misiones
 void RegisterMission();
