@@ -4,6 +4,7 @@
 #include "Lib.h"
 int main()
 {
+
     int option = 1, flag = NULL, position = NULL, search_astronaut = 0, search_ship = 0, search_mission = 0;
     while ( option == 1 ) {
 
@@ -21,7 +22,7 @@ int main()
                 break;
 
             case 2:
-
+                registerStarship();
                 break;
 
             case 3:
@@ -63,6 +64,8 @@ int main()
     }
 
 
+
+;
 
     return 0;
 }
