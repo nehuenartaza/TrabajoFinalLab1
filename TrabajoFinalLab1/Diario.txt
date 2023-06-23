@@ -2,7 +2,7 @@
 22/06 - 14:38 - Eloy creo las librerias y paso alli las estructuras.
 22/06 - 18:07 - Nehuen continuó con el menu e hizo las siguientes funciones: register_astronaut, save_astronaut, confirm_astronaut_ID, modify_astronauts, show_astronauts, register_mission, save_mission, confirm_mission_ID, modify_missions, show_missions.
 22/06 - 23:41 - Cambios de Eloy:
-- Cambio de sintaxis STship > stStarships | cambio nombre de archivos (tipo)Data -> "starshipsData.bin"
+- Cambio de sintaxis STship > stStarship | cambio nombre de archivos (tipo)Data -> "starshipsData.bin"
 - Texto Procedural (activable y desactivable), función: pprintf
 - comprobacion de archivo firstSpaceShip para comprobar IDs
 - Funciones: saveStarship(stStarship starship);
@@ -37,3 +37,6 @@ void changeAmmounFlysbyUser(int ID);
 
 23/06 - 16:25
 Eloy Elimino el menu.
+
+23/06 - 17:33 Nehuen terminó de armar las funciones "ChangeMissionStarshipID" y "RegisterMission" gracias a las funciones "starshipExistByID" y "starshipStatus" de Eloy. Nehuen encontró 1 array char sin utilizar en "changeStarshipType" y un stStarship sin utilizar en "searchSpaceshipByID" y las eliminó. Cambió casi todos los 'printf' por 'pprintf' en las funciones:
+RegisterAstronaut, ChangeAstronautName, ChangeAstronautLastName, ChangeAstronautNickname, ChangeAstronautAge, ChangeAstronautID, ChangeAstronautNationality, ChangeAstronautSpeciality, ChangeAstronautFlightTime, ChangeAstronautHoursSpaceStation, ChangeAstronautAmmountMissions, ChangeAstronautStatus, SelectAstronaut, ShowAstronauts, RegisterMission, ChangeMissionID, ChangeMissionStarshipID, ChangeMissionDetails, ChangeMissionShipment, ChangeMissionDestiny, ChangeMissionCrewmanList, ChangeMissionStatus, SelectMission y ShowMissions.

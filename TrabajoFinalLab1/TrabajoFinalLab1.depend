@@ -14,15 +14,18 @@
 	<string.h>
 	"Lib.h"
 
-1687468739 source:c:\users\nehue\documents\trabajofinallab1\trabajofinallab1\main.c
+1687548643 source:c:\users\nehue\documents\trabajofinallab1\trabajofinallab1\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"Lib.h"
 
-1687468435 c:\users\nehue\documents\trabajofinallab1\trabajofinallab1\lib.h
+1687552203 c:\users\nehue\documents\trabajofinallab1\trabajofinallab1\lib.h
 	<stdio.h>
+	<time.h>
+	<stdbool.h>
 
-1687468739 source:c:\users\nehue\documents\trabajofinallab1\trabajofinallab1\lib.c
+1687551946 source:c:\users\nehue\documents\trabajofinallab1\trabajofinallab1\lib.c
 	"Lib.h"
+	<unistd.h>
 
