@@ -1,8 +1,25 @@
 22/06 - 14:30 - Nehuen creó las estructuras, el menú del programa y las constantes.
-22/06/23 - 14:38 - Eloy creo las librerias y paso alli las estructuras.
-22/06 - 18:07 - Nehuen continuó con el menu e hizo las siguientes funciones: register_astronaut, save_astronaut, confirm_astronaut_ID, modify_astronauts y show_astronauts.
-22/06 - 23:41-
+22/06 - 14:38 - Eloy creo las librerias y paso alli las estructuras.
+22/06 - 18:07 - Nehuen continuó con el menu e hizo las siguientes funciones: register_astronaut, save_astronaut, confirm_astronaut_ID, modify_astronauts, show_astronauts, register_mission, save_mission, confirm_mission_ID, modify_missions, show_missions.
+22/06 - 23:41 - Cambios de Eloy:
 - Cambio de sintaxis STship > stStarships | cambio nombre de archivos (tipo)Data -> "starshipsData.bin"
-- Texto Procedural (activable y desactivable), pprintf
+- Texto Procedural (activable y desactivable), función: pprintf
 - comprobacion de archivo firstSpaceShip para comprobar IDs
-- Funciones de Carga, alta, baja, etc de naves
+- Funciones: saveStarship(stStarship starship);
+changeStarshipType(), registerStarship(), getLastStarshipID(), changeStarshipType(char starshipName[]), changeStarshipStatus(), searchSpaceshipByID(), starshipExistByID(int ID), printSpaceshipData(stStarship starship)
+
+23/06 - 12:44 - Nehuen hizo los siguientes cambios: modularizó la función de modify_astronauts a:
+ChangeAstronautName(), ChangeAstronautLastName(), ChangeAstronautNickname(), ChangeAstronautAge(), ChangeAstronautID(), ChangeAstronautNationality(), ChangeAstronautSpeciality(), ChangeAstronautFlightTime(), ChangeAstronautHoursSpaceStation(), ChangeAstronautAmmountMissions(), ChangeAstronautStatus() y creó las funciones AstronautAvailability(int) y GetLastAstronautID().
+Modularizó la función de modify_missions a:
+ChangeMissionID(), ChangeMissionStarshipID(), ChangeMissionDetails(), ChangeMissionShipment(), ChangeMissionDestiny(), ChangeMissionCrewmanList(), ChangeMissionStatus(), GetLastMissionID().
+Ahora la carga de IDs de astronautas en "RegisterAstronaut()" pasó de ser manual a ser otorgada automáticamente por la función "GetLastAstronautID", la carga de IDs de misiones en RegisterMission pasó de ser manual a ser caargada por la función "GetLastMissionID". Cambió la sintaxis de:
+register_mission a RegisterMission
+save_astronaut a SaveAstronaut
+confirm_astronaut_ID a ConfirmAstronautID
+show_astronauts a ShowAstronauts
+register_mission a RegisterMission
+confirm_mission_ID a ConfirmMissionID
+show_missions a ShowMissions
+STastronaut a stAstronaut
+STmission a stMission
+Además ahora los prototipados están ordenados y comentados para facilitar su búsqueda, las funciones también están ahora separadas por comentarios para facilitar la búsqueda
