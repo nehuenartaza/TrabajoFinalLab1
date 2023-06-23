@@ -1,3 +1,8 @@
 22/06 - 14:30 - Nehuen creó las estructuras, el menú del programa y las constantes.
 22/06/23 - 14:38 - Eloy creo las librerias y paso alli las estructuras.
-22/06 - 18:07 - Nehuen continuó con el men[u e hizo las siguientes funciones: register_astronaut, save_astronaut, confirm_astronaut_ID, modify_astronauts y show_astronauts.
+22/06 - 18:07 - Nehuen continuó con el menu e hizo las siguientes funciones: register_astronaut, save_astronaut, confirm_astronaut_ID, modify_astronauts y show_astronauts.
+22/06 - 23:41-
+- Cambio de sintaxis STship > stStarships | cambio nombre de archivos (tipo)Data -> "starshipsData.bin"
+- Texto Procedural (activable y desactivable), pprintf
+- comprobacion de archivo firstSpaceShip para comprobar IDs
+- Funciones de Carga, alta, baja, etc de naves

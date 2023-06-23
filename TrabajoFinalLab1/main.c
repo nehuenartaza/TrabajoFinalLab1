@@ -4,6 +4,7 @@
 #include "Lib.h"
 int main()
 {
+
     int option = 1, flag = NULL, position = NULL, search_astronaut = 0, search_ship = 0, search_mission = 0;
     while ( option == 1 ) {
 
@@ -17,27 +18,19 @@ int main()
             scanf ( "%d", &option );
             switch ( option ) {
             case 1:
-                system("cls");
                 register_astronaut();
                 break;
 
             case 2:
-                system("cls");
-                //funcion de registrar nave
+                registerStarship();
                 break;
 
             case 3:
-                system("cls");
-                //funcion de registrar mision
+
                 break;
 
             case 4:
                 system("cls");
-                break;
-
-            default:
-                system("cls");
-                break;
             }
             break;
 
@@ -45,30 +38,6 @@ int main()
             system("cls");
             drawmenu_2();
             scanf ( "%d", &option );
-            switch ( option ) {
-            case 1:
-                system("cls");
-                modify_astronauts();
-                break;
-
-                case 2:
-                    system("cls");
-                    //funcion de modificar nave
-                    break;
-
-                case 3:
-                    system("cls");
-                    //funcion de modificar mision
-                    break;
-
-                case 4:
-                    system("cls");
-                    break;
-
-                default:
-                    system("cls");
-                    break;
-            }
             break;
 
         case 3:
@@ -95,6 +64,8 @@ int main()
     }
 
 
+
+;
 
     return 0;
 }

@@ -1,11 +1,14 @@
 # depslib dependency file v1.0
-1687457590 source:c:\users\eloy\documents\github\trabajofinallab1\trabajofinallab1\lib.c
+1687487810 source:c:\users\eloy\documents\github\trabajofinallab1\trabajofinallab1\lib.c
 	"Lib.h"
+	<unistd.h>
 
-1687457601 c:\users\eloy\documents\github\trabajofinallab1\trabajofinallab1\lib.h
+1687487974 c:\users\eloy\documents\github\trabajofinallab1\trabajofinallab1\lib.h
 	<stdio.h>
+	<time.h>
+	<stdbool.h>
 
-1687457592 source:c:\users\eloy\documents\github\trabajofinallab1\trabajofinallab1\main.c
+1687484663 source:c:\users\eloy\documents\github\trabajofinallab1\trabajofinallab1\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
