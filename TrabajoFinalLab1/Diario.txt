@@ -38,7 +38,6 @@ void changeAmmounFlysbyUser(int ID);
 23/06 - 16:25
 Eloy Elimino el menu.
 23/06 19:00-
-
 Eloy creo las funciones:
 void changeColor();                                 //A - Permite cambiar el color de la consola se anexan las funciones A -
 void textColorsOptions();                           //A - Muestra las Opciones de colores
@@ -48,3 +47,6 @@ void saveColorChange(int colorChoosed);             //A - Salva la eleccion del 
 void readUserData();                                //  Busca los datos del usuario, si existe los aplica, si no, los crea por defecto
 bool proceduralTextRead();                          //  Lee el registro del usuario, si este desea el texto procedural habilitado, retorna true, caso contrario, false
 Creacion de documentacion tipo HTML para mejor navegacion e implementacion
+
+23/06 - 17:33 Nehuen terminó de armar las funciones "ChangeMissionStarshipID" y "RegisterMission" gracias a las funciones "starshipExistByID" y "starshipStatus" de Eloy. Nehuen encontró 1 array char sin utilizar en "changeStarshipType" y un stStarship sin utilizar en "searchSpaceshipByID" y las eliminó. Cambió casi todos los 'printf' por 'pprintf' en las funciones:
+RegisterAstronaut, ChangeAstronautName, ChangeAstronautLastName, ChangeAstronautNickname, ChangeAstronautAge, ChangeAstronautID, ChangeAstronautNationality, ChangeAstronautSpeciality, ChangeAstronautFlightTime, ChangeAstronautHoursSpaceStation, ChangeAstronautAmmountMissions, ChangeAstronautStatus, SelectAstronaut, ShowAstronauts, RegisterMission, ChangeMissionID, ChangeMissionStarshipID, ChangeMissionDetails, ChangeMissionShipment, ChangeMissionDestiny, ChangeMissionCrewmanList, ChangeMissionStatus, SelectMission y ShowMissions.
