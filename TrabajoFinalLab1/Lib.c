@@ -1181,55 +1181,11 @@ bool firstSpaceShip()
 
 
 //Menus
-void draw_mainmenu()
-{
-    system("cls");
-    pprintf("<EmmaMusk>\n");
-    pprintf ( "1- Registrar\n" );
-    pprintf ( "2- Modificar\n" );
-    pprintf ( "3- Consultar\n" );
-    pprintf ( "4- Mofidicar estados de astronautas, naves y misiones\n" );
-    pprintf ( "0- Cerrar programa\n" );
-    pprintf ( "opcion: " );
-}
-void drawmenu_1()   //menuPrincipal
-{
-    system("cls");
-    pprintf("<REGISTROS>\n");
-    pprintf ( "1- Registrar astronautas\n" );
-    pprintf ( "2- Registrar naves\n" );
-    pprintf ( "3- Registrar misiones\n" );
-    pprintf ( "4- Regresar al menu principal\n" );
-    pprintf ( "opcion: " );
-}
-void drawmenu_2()   //menuModificar
-{
-    system("cls");
-    pprintf("<MODIFICAR>\n");
-    pprintf ( "1- Modificar astronauta\n" );
-    pprintf ( "2- Modificar nave\n" );
-    pprintf ( "3- Modificar mision\n" );
-    pprintf ( "4- Regresar\n" );
-    pprintf ( "opcion: " );
-}
-void drawmenu_3()    //menuConsultas
-{
-    system("cls");
-    pprintf("<CONSULTAS>\n");
-    pprintf ( "1- Consultar astronautas por ID\n" );
-    pprintf ( "2- Consultar naves por ID\n" );
-    pprintf ( "3- Consultar misiones por ID\n" );
-    pprintf ( "4- Regresar\n" );
-    pprintf ( "opcion: " );
-}
-void drawmenu_4()   //menuModificarEstados
-{
-    system("cls");
-    pprintf("<ALTA / BAJA > \n");
-    pprintf ( "1- Dar de Alta a un astronauta \n" );
-    pprintf ( "2- Dar de Baja a un astronauta \n" );
-    pprintf ( "3- Cambiar estado de una nave \n" );
-    pprintf ( "4- Cambiar estado de una mision \n" );
-    pprintf ( "Opcion: " );
-}
+void textMainMenu(){
 
+
+
+
+
+
+}

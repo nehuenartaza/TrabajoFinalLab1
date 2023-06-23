@@ -34,3 +34,6 @@ void showFlyTime(int ID);
 void showAmmountFlys(int ID);
 void changeAmmounFlys(int ID, int times_fly);
 void changeAmmounFlysbyUser(int ID);
+
+23/06 - 16:25
+Eloy Elimino el menu.
