@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Diario</title>
+</head>
+<body style="background-color:#ffffff;">
+	  <header>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="Documentacion.html">Documentación</a>
+      <a href="Matriz.html">Matriz de Errores</a>
+      <hr>
+    </nav>
+  </header>
+<h1>Diario evolutivo del proyecto</h1>
+<hr>
+<h2>Prologó</h2>
+
+<p>
+	Uno de las pautas importantes para aprobar Laboratorio 1 (Materia practica de la programacion en la <b>Tecnicatura en Programacion de UTN</b>) es llevar a cabo un proyecto grupal de hasta 3 personas.<br>
+	La misma puede ser libre o en base a la <a href="https://docs.google.com/document/d/13Q62xzhZ8fDnRxxPhkieZEGQMZYwGEcTw4mg7AIsExk/edit" target="_blank">propuesta </a>otorgada por el mismo docente a cargo de la materia.<br>
+
+</p>
+<h3>Division de tareas</h3>
+<p>
+		
+Nos encontramos en la situación de que uno de nuestros compañeros ha sufrido una lesión en la mano. Como resultado, hemos tomado la decisión de asignarle una tarea de control de calidad (QA) y pruebas de código, con el objetivo de que pueda contribuir identificando errores y realizando diversas verificaciones. <br><br>
+Mientras tanto, los otros dos miembros del equipo se han encargado de la estructuración y creación del código.
+
+De esta manera, hemos buscado una solución que permita aprovechar los conocimientos y habilidades de nuestro compañero lesionado de manera efectiva, sin que su lesión suponga una limitación significativa para su participación en el proyecto.
+</p>
+
+<ul>
+<li>Distribucion del proyecto:</li>
+<ul>
+<li>Artaza</li>
+<li></li>
+<li></li>
+	</ul>
+	
+</ul>
+
+
+
+
+
+</p>
+	<hr>
+<ul>
+  <li>22/06 - 14:30 - Nehuen creó las estructuras, el menú del programa y las constantes.</li><br>
+  <li>22/06 - 14:38 - Eloy creó las librerías y pasó allí las estructuras.</li><br>
+  <li>22/06 - 18:07 - Nehuen continuó con el menú e hizo las siguientes funciones:</li><br>
+  <ul>
+    <li>register_astronaut</li>
+    <li>save_astronaut</li>
+    <li>confirm_astronaut_ID</li>
+    <li>modify_astronauts</li>
+    <li>show_astronauts</li>
+    <li>register_mission</li>
+    <li>save_mission</li>
+    <li>confirm_mission_ID</li>
+    <li>modify_missions</li>
+    <li>show_missions</li>
+  </ul>
+  <br>
+  <li>22/06 - 23:41 - Cambios de Eloy:</li><br>
+  <ul>
+    <li>Cambio de sintaxis STship > stStarships | cambio nombre de archivos (tipo)Data -> "starshipsData.bin"</li>
+    <li>Texto Procedural (activable y desactivable), función: pprintf</li>
+    <li>Comprobación de archivo firstSpaceShip para comprobar IDs</li>
+    <li>Funciones: saveStarship(stStarship starship); changeStarshipType(); registerStarship(); getLastStarshipID(); changeStarshipType(char starshipName[]); changeStarshipStatus(); searchSpaceshipByID(); starshipExistByID(int ID); printSpaceshipData(stStarship starship)</li>
+  </ul>
+  <br><li>23/06 - 12:44 - Nehuen hizo los siguientes cambios:</li><br>
+  <ul>
+    <li>Modularizó la función de modify_astronauts a:</li><br>
+    <ul>
+      <li>ChangeAstronautName()</li>
+      <li>ChangeAstronautLastName()</li>
+      <li>ChangeAstronautNickname()</li>
+      <li>ChangeAstronautAge()</li>
+      <li>ChangeAstronautID()</li>
+      <li>ChangeAstronautNationality()</li>
+      <li>ChangeAstronautSpeciality()</li>
+      <li>ChangeAstronautFlightTime()</li>
+      <li>ChangeAstronautHoursSpaceStation()</li>
+      <li>ChangeAstronautAmmountMissions()</li>
+      <li>ChangeAstronautStatus()</li>
+    </ul><br>
+    <li>Creó las funciones AstronautAvailability(int) y GetLastAstronautID().</li><br>
+    <li>Modularizó la función de modify_missions a:</li><br>
+    <ul>
+      <li>ChangeMissionID()</li>
+      <li>ChangeMissionStarshipID()</li>
+      <li>ChangeMissionDetails()</li>
+      <li>ChangeMissionShipment()</li>
+      <li>ChangeMissionDestiny()</li>
+      <li>ChangeMissionCrewmanList()</li>
+      <li>ChangeMissionStatus()</li>
+      <li>GetLastMissionID()</li>
+    </ul><br>
+    <li>Ahora la carga de IDs de astronautas en "RegisterAstronaut()" pasó de ser manual a ser otorgada automáticamente por la función "GetLastAstronautID".</li><br>
+    <li>La carga de IDs de misiones en RegisterMission pasó de ser manual a ser cargada por la función "GetLastMissionID".</li><br>
+    <li>Cambió la sintaxis de:</li><br>
+    <ul>
+      <li>register_mission a RegisterMission</li>
+      <li>save_astronaut a SaveAstronaut</li>
+      <li>confirm_astronaut_ID a ConfirmAstronautID</li>
+      <li>show_astronauts a ShowAstronauts</li>
+      <li>register_mission a RegisterMission</li>
+      <li>confirm_mission_ID a ConfirmMissionID</li>
+      <li>show_missions a ShowMissions</li>
+      <li>STastronaut a stAstronaut</li>
+      <li>STmission a stMission</li>
+    </ul><br>
+    <li>Además, ahora los prototipados están ordenados y comentados para facilitar su búsqueda. Las funciones también están ahora separadas por comentarios para facilitar la búsqueda.</li>
+  </ul>
+ <br> <li>23/06 - 16:20 - Eloy realizó la creación de las siguientes funciones:</li><br>
+  <ul>
+    <li>showSpaceship(int ID)</li>
+    <li>printAllStarships()</li>
+    <li>changeFlyTime(int ID, int time_fly)</li>
+    <li>changeFlyTimebyUser(int ID)</li>
+    <li>showFlyTime(int ID)</li>
+    <li>showAmmountFlys(int ID)</li>
+    <li>changeAmmounFlys(int ID, int times_fly)</li>
+    <li>changeAmmounFlysbyUser(int ID)</li>
+  </ul>
+  <br><li>23/06 - 16:25 - Eloy eliminó el menú.</li><br>
+<li>23/06 - 17:33 - Nehuen terminó de armar las funciones "ChangeMissionStarshipID" y "RegisterMission" gracias a las funciones "starshipExistByID" y "starshipStatus" de Eloy. Nehuen encontró 1 array char sin utilizar en "changeStarshipType" y un stStarship sin utilizar en "searchSpaceshipByID" y los eliminó. Cambió casi todos los 'printf' por 'pprintf' en las funciones:</li><br>
+  <ul>
+    <li>RegisterAstronaut</li>
+    <li>ChangeAstronautName</li>
+    <li>ChangeAstronautLastName</li>
+    <li>ChangeAstronautNickname</li>
+    <li>ChangeAstronautAge</li>
+    <li>ChangeAstronautID</li>
+    <li>ChangeAstronautNationality</li>
+    <li>ChangeAstronautSpeciality</li>
+    <li>ChangeAstronautFlightTime</li>
+    <li>ChangeAstronautHoursSpaceStation</li>
+    <li>ChangeAstronautAmmountMissions</li>
+    <li>ChangeAstronautStatus</li>
+    <li>SelectAstronaut</li>
+    <li>ShowAstronauts</li>
+    <li>RegisterMission</li>
+    <li>ChangeMissionID</li>
+    <li>ChangeMissionStarshipID</li>
+    <li>ChangeMissionDetails</li>
+    <li>ChangeMissionShipment</li>
+    <li>ChangeMissionDestiny</li>
+    <li>ChangeMissionCrewmanList</li>
+    <li>ChangeMissionStatus</li>
+    <li>SelectMission</li>
+    <li>ShowMissions</li>
+  </ul>
+</ul><br>
+
+
+  
+  <br><li>23/06 - 19:00 - Eloy creó las funciones:</li><br>
+  <ul>
+    <li>changeColor()</li>
+    <li>textColorsOptions()</li>
+    <li>setColor(int colorCode)</li>
+    <li>colorOption(int option)</li>
+    <li>saveColorChange(int colorChoosed)</li>
+    <li>readUserData()</li>
+    <li>proceduralTextRead()</li>
+    <li>Creación de documentación tipo HTML para mejor navegación e implementación</li>
+  </ul><br>
+  
+
+
+ <footer>
+ 	<hr>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="Documentacion.html">Documentación</a>
+      <a href="Matriz.html">Matriz de Errores</a>
+      
+    </nav>
+  </footer>
+
+
+
+</body>
+</html>
