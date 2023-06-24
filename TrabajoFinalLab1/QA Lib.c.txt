@@ -1,0 +1,76 @@
+CAMBIOS + SUGERENCIAS
+
+- El elemento "hours_flight" y todas sus apariciones de la estructura astronautas fue renombrado a "flight_hours".
+
+- El elemento "ammount_flights" y todas sus apariciones de la estructura naves espaciales fueron renombradas 
+a "number_of_flights"
+
+- El elemento "hours_flight" y todas sus apariciones de la estructura naves espaciales fueron renombradas a "flight_hours".
+
+- El elemento "ID_ship" y todas sus apariciones de la estructura misiones fueron renombradas a "ship_ID".
+
+- El elemento "destiny" y todas sus apariciones de la estructura misiones fueron renombradas a "destination".
+
+- El elemento "crewmans" y todas sus apariciones de la estructura misiones fueron renombradas a "crewmen".
+
+- El elemento "details_of_mission" y todas sus apariciones de la estructura misiones fueron renombradas a "mission_details".
+
+- El elemento "ammount_crewmans" y todas sus apariciones de la estructura misiones fueron renombradas a "crewman_amount".
+
+- Renombradas las funciones "showAmmountFlys", "changeAmmountFlys" y "changeAmmountFlysbyUser" por:
+"showFlightsAmount", "changeFlightsAmount" y "changeFlightsAmountByUser", respectivamente.
+
+- Renombrada la funcion "ChangeMissionDestiny" por "ChangeMissionDestination".
+
+- Renombradas las funciones "ChangeFlyTime", "showFlyTime" y "ChangeFlyTimebyUser" por:
+ "ChangeFlightTime", "showFlightTime" y "ChangeFlightTimeByUser"
+
+- Editado el texto de los pprintf en la función RegisterAstrounat, para mejorar la claridad.
+
+- La funcion SelectAstronaut debería chequear que no se ingrese un valor de astronauta que no existe, además del valor menor a 0.
+Habria que hacer una funcion que retorne la cantidad de astronautas y use como condicion de mayor.
+
+- En (469), edité la condicion del do-while de 	"&&" a "||", de lo contrario se rompe la funcion.
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+REVISAR
+
+(323) Es necesario ese if? Acaba de entrar al while con la misma condición.
+
+(149) Pondria las declaracion de esas dos variables en distintas lineas, para mejorar la claridad.
+(260) Idem
+
+(146) No sé si tiene sentido cambiarle la ID a un astronauta, ya que nunca se borran de la base de datos. Medio dudoso tener
+esa función.
+(432) Idem pero con tipo de nave, una nave de la nada no se transforma en otra. No me parece que tenga sentido.
+(865) Idem para ID de mision, no tiene sentido cambiarle la ID una vez se creó.
+
+(257) Agregaria un printf confirmando el nuevo estado del astronauta, para que quede claro por pantalla si se retiró o está activo.
+
+(469) Revisar los numeros para cada estado en el pdf del TP, se podria modificar para que haya consistencia.
+
+Revisar consistencia del termino starship/spaceship/spacecraft, se mezcla demasiado. Sugiero utilizar
+un termino consistente en todas las instancias del trabajo. (VEASE funcion en 1167 por ej)
+
+Revisar consistencia a la hora de cargar una nave nueva. Cuando cargamos astronauta nuevo, en la misma funcion cargamos 
+todos los datos directamente. Para una nave tenemos que primero crear el ID de nave y despues en otra funcion aparte,
+cargamos los datos de la nave. (394)
+
+(807) Pide la cantidad de astronautas que van a participar de la mision o la ID? Medio me confunde por cómo esta enunciado el printf.
+
+(1010) IMPORTANTE: Revisar en su totalidad esta funcion, rehacer teniendo en cuenta lo que se pide en el TP:
+● Misiones
+o Alta (Verificar que la nave que se le asigna esté lista para despegar, es decir
+en estado 1)
+o Baja (Cambia el estado de Lista a Cancelada, no se puede dar de baja una
+misión que está en el espacio).
+o Modificación
+▪ Con esta función podemos lanzar misiones y finalizarlas, al cambiar
+su estado.
+▪ Sólo se puede cambiar de:
+● Lista a En vuelo
+● En vuelo a Retornada
+● En vuelo a Fallida
+

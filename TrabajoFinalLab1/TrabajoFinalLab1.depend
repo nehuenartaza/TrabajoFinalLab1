@@ -30,3 +30,19 @@
 	"Lib.h"
 	<unistd.h>
 
+1687628259 source:h:\documentos\utn\primer cuatrimestre\programacion 1 y labo 1\trabajofinallab1\trabajofinallab1\lib.c
+	"Lib.h"
+	<unistd.h>
+
+1687634103 h:\documentos\utn\primer cuatrimestre\programacion 1 y labo 1\trabajofinallab1\trabajofinallab1\lib.h
+	<stdio.h>
+	<time.h>
+	<stdbool.h>
+	<windows.h>
+
+1687584719 source:h:\documentos\utn\primer cuatrimestre\programacion 1 y labo 1\trabajofinallab1\trabajofinallab1\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Lib.h"
+

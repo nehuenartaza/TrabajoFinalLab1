@@ -14,14 +14,14 @@
 //Estructuras
 typedef struct
 {
+    int ID;
     char name[dimChar];
     char last_name[dimChar];
     char nickname[dimChar];
-    int ID;
     int age;
     char nationality[dimChar];
     char speciality[dimChar];
-    int hours_flight;
+    int flight_hours;
     int missions;
     int hours_at_spaceStation;
     int status; //1-activo, 2-retirado
@@ -31,21 +31,21 @@ typedef struct
 {
     int ID;
     char type[dimChar]; //1-Starship, 2-Falcon 9, 3-Falcon Heavy
-    int ammount_flights;
-    int hours_flight;
+    int number_of_flights;
+    int flight_hours;
     int status; //1 lista para su uso, 2 en mision, 3 en mantenimiento, 4 de baja
 } stStarship;
 
 typedef struct
 {
     int ID;
-    int ID_ship;
+    int ship_ID;
     int status; //1-listo, 2-en vuelo, 3-retornada, 4-cancelada, 5-fallida
-    int destiny; //1-EEI, 2-orbita terrestre, 3-luna
+    int destination; //1-EEI, 2-orbita terrestre, 3-luna
     int shipment; //1-satelite, 2-insumos para la EE
-    int crewmans[dimInt];
-    char details_of_mission[dimChar]; //breve descripcion
-    int ammount_crewmans;
+    int crewmen[dimInt];
+    char mission_details[dimChar]; //breve descripcion
+    int crewman_amount;
 } stMission;
 
 typedef struct{
@@ -88,12 +88,12 @@ void printSpaceshipData(stStarship starship);                       // Imprime p
 void printStarshipStatus(int starshipStatus);                       // Imprime el estado de la nave: 1-mantenimiento, 2-lista para usar, 2-en uso, 3-de baja
 int starshipStatus(int ID);                                         // Retorna el estado de la nave
 void printAllStarships();                                           // Muestra todas las naves cargadas en el archivo
-void changeFlyTime(int ID, int time_fly);                           // Cambia el tiempo de vuelo
-void changeFlyTimebyUser(int ID);                                   // Solicita un tiempo sin restricciones, por si se quisiese modificar un error de ingreso restando horas
-void showFlyTime(int ID);                                           // Muestra el tiempo de vuelo por ID
-void showAmmountFlys(int ID);                                       // Muestra la cantidad de vuelos
-void changeAmmountFlys(int ID, int times_fly);                      // Cambia la cantidad de vuelos
-void changeAmmountFlysbyUser(int ID);                               // Solicita una cantidad sin restricciones, por si se quisiese modificar un error de ingreso restando horas
+void changeFlightTime(int ID, int time_fly);                        // Cambia el tiempo de vuelo
+void changeFlightTimeByUser(int ID);                                // Solicita un tiempo sin restricciones, por si se quisiese modificar un error de ingreso restando horas
+void showFlightTime(int ID);                                           // Muestra el tiempo de vuelo por ID
+void showFlightsAmount(int ID);                                     // Muestra la cantidad de vuelos
+void changeFlightsAmount(int ID, int times_fly);                    // Cambia la cantidad de vuelos
+void changeFlightsAmountByUser(int ID);                             // Solicita una cantidad sin restricciones, por si se quisiese modificar un error de ingreso restando horas
 
 
 //Misiones
@@ -104,7 +104,7 @@ void ChangeMissionID();
 void ChangeMissionStarshipID();
 void ChangeMissionDetails();
 void ChangeMissionShipment();
-void ChangeMissionDestiny();
+void ChangeMissionDestination();
 void ChangeMissionCrewmanList();
 void ChangeMissionStatus();
 int SelectMission();
