@@ -27,7 +27,7 @@ a "number_of_flights"
 
 - Editado el texto de los pprintf en la función RegisterAstrounat, para mejorar la claridad.
 
-- La funcion SelectAstronaut debería chequear que no se ingrese un valor de astronauta que no existe, además del valor menor a 0.
+- (SUGERENCIA IMPLEMENTADA POR NEHUEN)La funcion SelectAstronaut debería chequear que no se ingrese un valor de astronauta que no existe, además del valor menor a 0.
 Habria que hacer una funcion que retorne la cantidad de astronautas y use como condicion de mayor.
 
 - En (469), edité la condicion del do-while de 	"&&" a "||", de lo contrario se rompe la funcion.
@@ -37,7 +37,7 @@ Habria que hacer una funcion que retorne la cantidad de astronautas y use como c
 ----------------------------------------------------------------------------------------------------------------------------------
 REVISAR
 
-(323) Es necesario ese if? Acaba de entrar al while con la misma condición.
+(323)(SUGERENCIA TOMADA Y CHEQUEADA POR NEHUEN) Es necesario ese if? Acaba de entrar al while con la misma condición.
 
 (149) Pondria las declaracion de esas dos variables en distintas lineas, para mejorar la claridad.
 (260) Idem
@@ -47,9 +47,9 @@ esa función.
 (432) Idem pero con tipo de nave, una nave de la nada no se transforma en otra. No me parece que tenga sentido.
 (865) Idem para ID de mision, no tiene sentido cambiarle la ID una vez se creó.
 
-(257) Agregaria un printf confirmando el nuevo estado del astronauta, para que quede claro por pantalla si se retiró o está activo.
+(257)(SUGERENCIA TOMADA E IMPLEMENTADA POR NEHUEN) Agregaria un printf confirmando el nuevo estado del astronauta, para que quede claro por pantalla si se retiró o está activo.
 
-(469) Revisar los numeros para cada estado en el pdf del TP, se podria modificar para que haya consistencia.
+(469)(SUGERENCIA TOMADA Y MODIFICADA POR NEHUEN) Revisar los numeros para cada estado en el pdf del TP, se podria modificar para que haya consistencia.
 
 Revisar consistencia del termino starship/spaceship/spacecraft, se mezcla demasiado. Sugiero utilizar
 un termino consistente en todas las instancias del trabajo. (VEASE funcion en 1167 por ej)
@@ -58,9 +58,9 @@ Revisar consistencia a la hora de cargar una nave nueva. Cuando cargamos astrona
 todos los datos directamente. Para una nave tenemos que primero crear el ID de nave y despues en otra funcion aparte,
 cargamos los datos de la nave. (394)
 
-(807) Pide la cantidad de astronautas que van a participar de la mision o la ID? Medio me confunde por cómo esta enunciado el printf.
+(807)(SUGERENCIA TOMADA Y PRINTF ARREGLADO POR NEHUEN) Pide la cantidad de astronautas que van a participar de la mision o la ID? Medio me confunde por cómo esta enunciado el printf.
 
-(1010) IMPORTANTE: Revisar en su totalidad esta funcion, rehacer teniendo en cuenta lo que se pide en el TP:
+(1010)(SUGERENCIA TOMADA Y FUNCIÓN RE-HECHA POR NEHUEN) IMPORTANTE: Revisar en su totalidad esta funcion, rehacer teniendo en cuenta lo que se pide en el TP:
 ● Misiones
 o Alta (Verificar que la nave que se le asigna esté lista para despegar, es decir
 en estado 1)

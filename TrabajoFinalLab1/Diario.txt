@@ -50,3 +50,24 @@ Creacion de documentacion tipo HTML para mejor navegacion e implementacion
 
 23/06 - 17:33 Nehuen terminó de armar las funciones "ChangeMissionStarshipID" y "RegisterMission" gracias a las funciones "starshipExistByID" y "starshipStatus" de Eloy. Nehuen encontró 1 array char sin utilizar en "changeStarshipType" y un stStarship sin utilizar en "searchSpaceshipByID" y las eliminó. Cambió casi todos los 'printf' por 'pprintf' en las funciones:
 RegisterAstronaut, ChangeAstronautName, ChangeAstronautLastName, ChangeAstronautNickname, ChangeAstronautAge, ChangeAstronautID, ChangeAstronautNationality, ChangeAstronautSpeciality, ChangeAstronautFlightTime, ChangeAstronautHoursSpaceStation, ChangeAstronautAmmountMissions, ChangeAstronautStatus, SelectAstronaut, ShowAstronauts, RegisterMission, ChangeMissionID, ChangeMissionStarshipID, ChangeMissionDetails, ChangeMissionShipment, ChangeMissionDestiny, ChangeMissionCrewmanList, ChangeMissionStatus, SelectMission y ShowMissions.
+
+25/05 - 13:29 Nehuen tomó algunas de las sugerencias y fallas encontradas por el Tester QA (Federico) y las usó:
+- "La funcion SelectAstronaut debería chequear que no se ingrese un valor de astronauta que no existe, además del valor menor a 0. Habria que hacer una funcion que retorne la cantidad de astronautas y use como condicion de mayor."
+- "Agregaria un printf confirmando el nuevo estado del astronauta, para que quede claro por pantalla si se retiró o está activo." (Función ChangeAstronautStatus).
+- "Pide la cantidad de astronautas que van a participar de la mision o la ID? Medio me confunde por cómo esta enunciado el printf." (Printf ambiguo arreglado).
+Nehuen cambió el nombre de las siguientes funciones en base a la siguiente sugerencia: "Revisar consistencia del termino starship/spaceship/spacecraft, se mezcla demasiado. Sugiero utilizar un termino consistente en todas las instancias del trabajo."
+- "saveStarship" cambió a "saveSpaceship"
+- "registerStarship" cambió a "registerSpaceship"
+- "getLastStarshipID" cambió a "getLastSpaceshipID"
+- "changeStarshipType" cambió a "changeSpaceshipType"
+- "changeStarshipStatus" cambió a "changeSpaceshipStatus"
+- "starshipExistByID" cambió a "spaceshipExistByID"
+- "printStarshipData" cambió a "printSpaceshipData"
+- "printStarshipStatus" cambió a "printSpaceshipStatus"
+- "starshipStatus" cambió a "spaceshipStatus"
+- "printAllStarships" cambió a "printAllSpaceships"
+Nehuen volvió a hacer la función "ChangeMissionStatus" gracias a una sugerencia del Tester QA, la función no cumplía con lo pedido. Creó la función "GetTotalAstronauts" gracias a la sugerencia del Tester QA: "La funcion SelectAstronaut debería chequear que no se ingrese un valor de astronauta que no existe, además del valor menor a 0. Habria que hacer una funcion que retorne la cantidad de astronautas y use como condicion de mayor."
+Nehuen cambió el tipo dato "stStarship" a "stSpaceship" y todas las variables de tipo stSpaceship fueron cambiadas de "ship" y "starship" a "spaceship".
+Todos los nombres de las funciones referidas a astronautas pasaron de "CamelCase" a "camelCase".
+Todos los nombres de las funciones referidas a misiones pasaron de "CamelCase" a "camelCase".
+En el cambio de nombres de funciones se generó un bug en la función "registerMission", una variable int tenía el mismo nombre que la función "astronautAvailability" por lo tanto el dato de tipo int pasó a llamarse "availabilityOfAstronaut" que confirma si el astronauta que se quiere agregar a la misión esté activo.
