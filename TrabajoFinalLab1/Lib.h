@@ -58,12 +58,8 @@ typedef struct
 void registerAstronaut();
 void saveAstronaut(stAstronaut);
 int confirmAstronautID(int);
-void changeAstronautName();
-void changeAstronautLastName();
 void changeAstronautNickname();
 void changeAstronautAge();
-void changeAstronautID();
-void changeAstronautNationality();
 void changeAstronautSpeciality();
 void changeAstronautFlightTime();
 void changeAstronautHoursSpaceStation();
@@ -74,12 +70,12 @@ void showAstronauts();
 int astronautAvailability(int);
 int getLastAstronautID();
 int getTotalAstronauts();
+void firstAstronaut();
 
 //Naves
 void saveSpaceship(stSpaceship starship);                           // Guarda en la ultima posicion del archivo la nave recibida por parametro
 void registerSpaceship();                                           // Carga de datos y en archivo una nueva nave. Con parametros en automatico
 int getLastSpaceshipID();                                           // Obtiene la ultima ID del registro
-void changeSpaceshipType(char starshipName[]);                      // Cambia el tipo de nave
 int changeSpaceshipStatus();                                        // Retorna el estado de la nave elegida: 1 lista para su uso, 2 en mision, 3 en mantenimiento, 4 de baja
 void searchSpaceshipByID();                                         // Verifica si la nave existe, la busca y permite modificar sus datos o visualizarla
 void showSpaceship(int ID);                                         // Muestra una nave por su ID
@@ -93,13 +89,14 @@ void changeFlightTimeByUser(int ID);                                // Solicita 
 void showFlightTime(int ID);                                        // Muestra el tiempo de vuelo por ID
 void showFlightsAmount(int ID);                                     // Muestra la cantidad de vuelos
 void changeFlightsAmount(int ID, int times_fly);                    // Cambia la cantidad de vuelos
-void changeFlightsAmountByUser(int ID);                             // Solicita una cantidad sin restricciones, por si se quisiese modificar un error de ingreso restando horas
+void changeFlightsAmountByUser(int ID);
+bool firstSpaceShip();
+void autoChangeSpaceshipStatus(int, int, int);
 
 //Misiones
 void registerMission();
 void saveMission(stMission);
 int confirmMissionID(int);
-void changeMissionID();
 void changeMissionStarshipID();
 void changeMissionDetails();
 void changeMissionShipment();
@@ -109,13 +106,13 @@ void changeMissionStatus();
 int selectMission();
 void showMissions();
 int getLastMissionID();
+bool firstMission() ;
 
 //Menu
 
 
 //Otros
 void pprintf(const char *str);
-bool firstSpaceShip();
 
 //Otros-> UserData
 void changeColor();                                 //A - Permite cambiar el color de la consola se anexan las funciones A -

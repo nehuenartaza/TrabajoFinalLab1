@@ -47,3 +47,15 @@
 	<string.h>
 	"Lib.h"
 
+1687820906 source:c:\users\nehuen\documents\github\trabajofinallab1\trabajofinallab1\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Lib.h"
+
+1687826188 c:\users\nehuen\documents\github\trabajofinallab1\trabajofinallab1\lib.h
+	<stdio.h>
+	<time.h>
+	<stdbool.h>
+	<windows.h>
+
