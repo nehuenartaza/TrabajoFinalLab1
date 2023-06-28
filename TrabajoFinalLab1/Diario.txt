@@ -81,4 +81,14 @@ funciones "firstAstronaut" y "firstMission". Borró de la función "registerAstr
 era ilógico, se arregló un error en la carga de la ID, ya que si no existía un astronauta cargado, se rompía el código y el número de ID era un valor
 aleatorio, el mismo error se arregló en la función "registerMission". Arregló la función "changeAstronautStatus" ya que se podía dar de alta un
 astronauta retirado. Creó la función "autoChangeSpaceshipStatus" para modificar el estado de la nave automáticamente cuando una misión cambia de estado
-ya que "changeMissionStatus" no cumplía bien su función. Se agregó la validación de la edad en "registerAstronaut" para que sea mayor a 18 y menor a 70, además de 2 system("cls"); en dicha función. Se agregó un system("cls"); al final de la función "registerMission"
+ya que "changeMissionStatus" no cumplía bien su función. Se agregó la validación de la edad en "registerAstronaut" para que sea mayor a 18 y menor a 70,
+además de 2 system("cls"); en dicha función. Se agregó un system("cls"); al final de la función "registerMission".
+27/06 - 12:30 - Nehuen: Tanto en selectAstronaut como en selectMission se eliminó un while dentro del if que volvía a evaluar si el archivo se
+encontraba en eof ya que gracias a las variables maxAstronauts y maxMissions servían de límite máximo gracias a las funciones getTotalAstronauts y
+getTotalMissions.
+Se arregló un error de sintáxis y lógica en la función getTotalAstronauts, se cambió la línea:
+totalRegisters = fseek(file, sizeof(stAstronaut) * 0, SEEK_END) / sizeof(stAstronaut);
+Por:
+fseek(file, 0, SEEK_END);
+totalRegisters = ftell(file) / sizeof(stMission);
+El mismo error ocurrió en la función getTotalMissions y se arregló de la misma forma.
