@@ -43,9 +43,9 @@ typedef struct
     int status; //1-listo, 2-en vuelo, 3-retornada, 4-cancelada, 5-fallida
     int destination; //1-EEI, 2-orbita terrestre, 3-luna
     int shipment; //1-satelite, 2-insumos para la EE
-    int crewmen[dimInt];
+    int crewmen[dimInt];    //Lista de IDs de los tripulantes
     char mission_details[dimChar]; //breve descripcion
-    int crewman_amount;
+    int crewman_amount;     //total de tripulantes
 } stMission;
 
 typedef struct
@@ -71,7 +71,8 @@ int astronautAvailability(int);
 int getLastAstronautID();
 int getTotalAstronauts();
 bool firstAstronaut();
-//void showAstronautByID()
+void showAstronautByID();
+int makeListOfAstronautsForMission(stAstronaut[]);
 
 //Naves
 void saveSpaceship(stSpaceship starship);                           // Guarda en la ultima posicion del archivo la nave recibida por parametro
@@ -94,6 +95,7 @@ void changeSpaceshipFlightsAmount();                          //
 bool firstSpaceShip();
 void autoChangeSpaceshipStatus(int, int, int);
 void selectSpaceshipType(stSpaceship*);
+int makeListOfSpaceshipsForMission(stSpaceship[]);
 
 //Misiones
 void registerMission();
