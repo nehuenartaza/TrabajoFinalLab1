@@ -81,3 +81,4 @@ crear la funcion showAstronauntByID
 - Se agrego un cls a registrer astronauta
 - Se reorganizo el "showAstronaunts" para que sea mas legible
 - Se agrego una pausa para poder leer el registro
+- Se crearon menues y se anexo las respectivas funciones a cada uno (falta anexar algunas y terminar los otros)

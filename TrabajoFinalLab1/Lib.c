@@ -386,6 +386,7 @@ void registerSpaceship()                         //Carga de datos y en archivo u
     pprintf("Nave cargada exitosamente, ID <");
     printf("%i", spaceship.ID);
     pprintf(">\nPara modificar sus datos, seleccione el modulo correspondiente\n");
+    system("pause");
 }
 
 void selectSpaceshipType(stSpaceship *type)

@@ -346,5 +346,43 @@ void modifySpMenu()
 
 
 
+void optionsMenu()
+{
+
+    int option = 0;
+    do
+    {
+        system("cls");
+
+        pprintf(" 1- Cambiar color de la consola.\n");
+        pprintf(" 2- Desactivar / Activar Texto procedural.\n");
+        pprintf(">: ");
+        fflush(stdin);
+        scanf("%i", &option);
+
+        switch(option)
+        {
+
+        case 1:
+            changeSpaceshipStatus();
+            break;
+        case 2:
+            changeSpaceshipFlightTime();
+            break;
+        case 3:
+            changeSpaceshipFlightsAmount();
+
+            break;
+
+        default:
+            if(option != 0)
+            {
+                printf("Opcion invalida, ingrese un valor valido");
+            }
+            break;
+        }
+    }
+    while(option != 0);
+}
 
 
