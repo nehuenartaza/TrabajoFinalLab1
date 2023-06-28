@@ -216,25 +216,16 @@ int selectAstronaut()       //Selecciona un astronauta y retorna la posición del
     maxAstronauts = getTotalAstronauts();
     pprintf ( "Seleccione un astronauta\n" );
     scanf ( "%d", &pos );
-    while ( pos < 0 || pos > maxAstronauts )
+    while ( pos < 0 || pos >= maxAstronauts )
     {
-        printf ( "No se permite un valor menor a 0 o mayor a %d, pruebe de nuevo\n", maxAstronauts );
+        printf ( "No se permite un valor menor a 0 o mayor o igual a %d, pruebe de nuevo\n", maxAstronauts );
         scanf ( "%d", &pos );
     }
-    FILE *file = fopen(Fastronauts, "r+b");
+    FILE *file = fopen(Fastronauts, "rb");
     if ( file != NULL )
     {
         fseek(file, sizeof(stAstronaut) * pos, SEEK_SET);
         fread(&user, sizeof(stAstronaut), 1, file);
-        while ( pos < 0 || pos > maxAstronauts )
-        {
-            system("cls");
-            pprintf ( "Registro no existente o valor menor a 0 no permitido, intente de nuevo\n" );
-            showAstronauts();
-            scanf ( "%d", &pos );
-            fseek(file, sizeof(stAstronaut) * pos, SEEK_SET);
-            fread(&user, sizeof(stAstronaut), 1, file);
-        }
         fclose(file);
     }
     return pos;
@@ -313,7 +304,8 @@ int getTotalAstronauts()        //Retorna la cantidad total de registros de astr
     int totalRegisters = 0;
     FILE *file = fopen(Fastronauts, "rb");
     if ( file != NULL ) {
-        totalRegisters = fseek(file, sizeof(stAstronaut) * 0, SEEK_END) / sizeof(stAstronaut);
+        fseek(file, 0, SEEK_END);
+        totalRegisters = ftell(file) / sizeof(stAstronaut);
     }
     return totalRegisters;
 }
@@ -1031,32 +1023,24 @@ void changeMissionStatus()                  //Cambia el estado de la misión, 1-l
     }
 }
 
-int selectMission()                         //fedep: probar esto porfa//Selecciona una misión y retorna la posición de la misma
+int selectMission()                         //Selecciona una misión y retorna la posición de la misma
 {
     stMission mission;
-    int pos = 0;
+    int pos = 0, maxMissions = 0;
     showMissions();
+    maxMissions = getTotalMissions();
     pprintf ( "Seleccione una mision:\n" );
     scanf ( "%d", &pos );
-    while ( pos < 0 )
+    while ( pos < 0 || pos >= maxMissions )
     {
-        pprintf ( "No se permite un valor menor a 0, pruebe de nuevo.\n" );
+        pprintf ( "No se permite un valor menor a 0 o mayor o igual a %d, pruebe de nuevo.\n, maxMissions" );
         scanf ( "%d", &pos );
     }
-    FILE *file = fopen(Fmissions, "r+b");
+    FILE *file = fopen(Fmissions, "rb");
     if ( file != NULL )
     {
         fseek(file, sizeof(stMission) * pos, SEEK_SET);
         fread(&mission, sizeof(stMission), 1, file);
-        while ( feof(file) || pos < 0 )     //en teoría esto salva al programa, ej: tener 10 registros y que el usuario elija el registro 11, encargado fedep de probar esto
-        {
-            system("cls");
-            pprintf ( "Registro no existente o valor menor a 0 no permitido, intente de nuevo.\n" );
-            showMissions();
-            scanf ( "%d", &pos );
-            fseek(file, sizeof(stMission) * pos, SEEK_SET);
-            fread(&mission, sizeof(stMission), 1, file);
-        }
         fclose(file);
     }
     return pos;
@@ -1152,6 +1136,17 @@ bool firstMission()                             //verifica si al menos hay una m
         fclose(file);
     }
     return firstMission;
+}
+
+int getTotalMissions()        //Retorna la cantidad total de registros de misiones
+{
+    int totalRegisters = 0;
+    FILE *file = fopen(Fmissions, "rb");
+    if ( file != NULL ) {
+        fseek(file, 0, SEEK_END);
+        totalRegisters = ftell(file) / sizeof(stMission);
+    }
+    return totalRegisters;
 }
 
 
