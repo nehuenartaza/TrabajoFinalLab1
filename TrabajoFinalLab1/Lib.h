@@ -108,7 +108,8 @@ void changeMissionStatus();
 int selectMission();
 void showMissions();
 int getLastMissionID();
-bool firstMission() ;
+bool firstMission();
+int getTotalMissions();
 
 //Menu
 
