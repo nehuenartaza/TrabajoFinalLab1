@@ -356,7 +356,7 @@ void registerSpaceship()                         //Carga de datos y en archivo u
     {
         spaceship.ID = getLastSpaceshipID() + 1;
     }
-    changeSpaceshipType(&spaceship.type);
+    selectSpaceshipType(&spaceship.type);
     spaceship.flight_hours = NULL;
     spaceship.number_of_flights = NULL;
     spaceship.status = 1; // Lista para su uso
@@ -367,6 +367,24 @@ void registerSpaceship()                         //Carga de datos y en archivo u
     pprintf("Nave cargada exitosamente, ID <");
     printf("%i", spaceship.ID);
     pprintf(">\nPara modificar sus datos, seleccione el modulo correspondiente\n");
+}
+
+void selectSpaceshipType(stSpaceship *type)
+{
+    stSpaceship spaceship;
+    int tipo = 0;
+    do
+    {
+        printf( "Ingrese tipo de nave, 1-Starship, 2-Falcon 9, 3-Falcon Heavy\n" );
+        scanf ( "%d", &tipo);
+    } while ( tipo <= 0 || tipo > 3 );
+    if ( tipo == 1 ) {
+        strcpy(type, "Starship");
+    } else if ( tipo == 2 ) {
+            strcpy(type, "Falcon 9");
+        } else {
+                strcpy(type, "Falcon Heavy");
+            }
 }
 
 int getLastSpaceshipID()                         //Obtiene la ultima ID del registro

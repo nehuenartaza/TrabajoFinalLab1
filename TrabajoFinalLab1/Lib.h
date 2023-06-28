@@ -70,7 +70,7 @@ void showAstronauts();
 int astronautAvailability(int);
 int getLastAstronautID();
 int getTotalAstronauts();
-void firstAstronaut();
+bool firstAstronaut();
 
 //Naves
 void saveSpaceship(stSpaceship starship);                           // Guarda en la ultima posicion del archivo la nave recibida por parametro
@@ -92,6 +92,7 @@ void changeFlightsAmount(int ID, int times_fly);                    // Cambia la
 void changeFlightsAmountByUser(int ID);
 bool firstSpaceShip();
 void autoChangeSpaceshipStatus(int, int, int);
+void selectSpaceshipType(stSpaceship*);
 
 //Misiones
 void registerMission();
