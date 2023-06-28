@@ -66,10 +66,19 @@ Nehuen cambió el nombre de las siguientes funciones en base a la siguiente suge
 - "printStarshipStatus" cambió a "printSpaceshipStatus"
 - "starshipStatus" cambió a "spaceshipStatus"
 - "printAllStarships" cambió a "printAllSpaceships"
-Nehuen volvió a hacer la función "ChangeMissionStatus" gracias a una sugerencia del Tester QA, la función no cumplía con lo pedido. Creó la función "GetTotalAstronauts" gracias a la sugerencia del Tester QA: "La funcion SelectAstronaut debería chequear que no se ingrese un valor de astronauta que no existe, además del valor menor a 0. Habria que hacer una funcion que retorne la cantidad de astronautas y use como condicion de mayor."
+Nehuen volvió a hacer la función "ChangeMissionStatus" gracias a una sugerencia del Tester QA, la función no cumplía con lo pedido. Creó la función
+"GetTotalAstronauts" gracias a la sugerencia del Tester QA: "La funcion SelectAstronaut debería chequear que no se ingrese un valor de astronauta que no
+existe, además del valor menor a 0. Habria que hacer una funcion que retorne la cantidad de astronautas y use como condicion de mayor."
 Nehuen cambió el tipo dato "stStarship" a "stSpaceship" y todas las variables de tipo stSpaceship fueron cambiadas de "ship" y "starship" a "spaceship".
 Todos los nombres de las funciones referidas a astronautas pasaron de "CamelCase" a "camelCase".
 Todos los nombres de las funciones referidas a misiones pasaron de "CamelCase" a "camelCase".
-En el cambio de nombres de funciones se generó un bug en la función "registerMission", una variable int tenía el mismo nombre que la función "astronautAvailability" por lo tanto el dato de tipo int pasó a llamarse "availabilityOfAstronaut" que confirma si el astronauta que se quiere agregar a la misión esté activo.
+En el cambio de nombres de funciones se generó un bug en la función "registerMission", una variable int tenía el mismo nombre que la función
+"astronautAvailability" por lo tanto el dato de tipo int pasó a llamarse "availabilityOfAstronaut" que confirma si el astronauta que se quiere agregar a
+la misión esté activo.
 26/06 - 20:22 - Nehuen eliminó las siguientes funciones ya que no cumplían con lo pedido:
-changeAstronautName - changeAstronautLastName - changeAstronautID - changeAstronautNationality - changeSpaceshipType - changeMissionID . Creó las funciones "firstAstronaut" y "firstMission". Borró de la función "registerAstronaut" la posibilidad de ingresar las horas y cantidad de misiones ya que era ilógico, se arregló un error en la carga de la ID, ya que si no existía un astronauta cargado, se rompía el código y el número de ID era un valor aleatorio, el mismo error se arregló en la función "registerMission". Arregló la función "changeAstronautStatus" ya que se podía dar de alta un astronauta retirado. Creó la función "autoChangeSpaceshipStatus" para modificar el estado de la nave automáticamente cuando una misión cambia de estado ya que "changeMissionStatus" no cumplía bien su función. Se agregó la validación de la edad en "registerAstronaut" para que sea mayor a 18 y menor a 70, además de 2 system("cls"); en dicha función. Se agregó un system("cls"); al final de la función "registerMission"
+changeAstronautName - changeAstronautLastName - changeAstronautID - changeAstronautNationality - changeSpaceshipType - changeMissionID . Creó las
+funciones "firstAstronaut" y "firstMission". Borró de la función "registerAstronaut" la posibilidad de ingresar las horas y cantidad de misiones ya que
+era ilógico, se arregló un error en la carga de la ID, ya que si no existía un astronauta cargado, se rompía el código y el número de ID era un valor
+aleatorio, el mismo error se arregló en la función "registerMission". Arregló la función "changeAstronautStatus" ya que se podía dar de alta un
+astronauta retirado. Creó la función "autoChangeSpaceshipStatus" para modificar el estado de la nave automáticamente cuando una misión cambia de estado
+ya que "changeMissionStatus" no cumplía bien su función. Se agregó la validación de la edad en "registerAstronaut" para que sea mayor a 18 y menor a 70, además de 2 system("cls"); en dicha función. Se agregó un system("cls"); al final de la función "registerMission"
