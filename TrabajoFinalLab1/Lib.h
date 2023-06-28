@@ -71,13 +71,14 @@ int astronautAvailability(int);
 int getLastAstronautID();
 int getTotalAstronauts();
 bool firstAstronaut();
+//void showAstronautByID()
 
 //Naves
 void saveSpaceship(stSpaceship starship);                           // Guarda en la ultima posicion del archivo la nave recibida por parametro
 void registerSpaceship();                                           // Carga de datos y en archivo una nueva nave. Con parametros en automatico
 int getLastSpaceshipID();                                           // Obtiene la ultima ID del registro
 int changeSpaceshipStatus();                                        // Retorna el estado de la nave elegida: 1 lista para su uso, 2 en mision, 3 en mantenimiento, 4 de baja
-void searchSpaceshipByID();                                         // Verifica si la nave existe, la busca y permite modificar sus datos o visualizarla
+void showSpaceshipByID();                                           // Verifica si la nave existe, la busca y permite modificar sus datos o visualizarla
 void showSpaceship(int ID);                                         // Muestra una nave por su ID
 bool spaceshipExistByID(int ID);                                    // Retorna verdadero si la nave existe en el archivo en base al ID recibido
 void printSpaceshipData(stSpaceship starship);                      // Imprime por pantalla los datos de la nave
@@ -85,11 +86,11 @@ void printSpaceshipStatus(int spaceshipStatus);                     // Imprime e
 int spaceshipStatus(int ID);                                        // Retorna el estado de la nave
 void printAllStarships();                                           // Muestra todas las naves cargadas en el archivo
 void changeFlightTime(int ID, int time_fly);                        // Cambia el tiempo de vuelo
-void changeFlightTimeByUser(int ID);                                // Solicita un tiempo sin restricciones, por si se quisiese modificar un error de ingreso restando horas
+void changeSpaceshipFlightTime();                                   // Solicita un tiempo sin restricciones, por si se quisiese modificar un error de ingreso restando horas
 void showFlightTime(int ID);                                        // Muestra el tiempo de vuelo por ID
 void showFlightsAmount(int ID);                                     // Muestra la cantidad de vuelos
 void changeFlightsAmount(int ID, int times_fly);                    // Cambia la cantidad de vuelos
-void changeFlightsAmountByUser(int ID);
+void changeSpaceshipFlightsAmount();                          //
 bool firstSpaceShip();
 void autoChangeSpaceshipStatus(int, int, int);
 void selectSpaceshipType(stSpaceship*);

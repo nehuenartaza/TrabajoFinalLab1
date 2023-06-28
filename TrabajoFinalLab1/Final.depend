@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1687922828 source:c:\users\eloy\desktop\codeblocksfile\final\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Lib.h"
+
+1687922541 c:\users\eloy\desktop\codeblocksfile\final\lib.h
+	<stdio.h>
+	<time.h>
+	<stdbool.h>
+	<windows.h>
+
+1687922979 source:c:\users\eloy\desktop\codeblocksfile\final\lib.c
+	"Lib.h"
+	<unistd.h>
+
