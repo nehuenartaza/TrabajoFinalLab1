@@ -241,7 +241,7 @@ int selectAstronaut()       //Selecciona un astronauta y retorna la posición del
     scanf ( "%d", &pos );
     while ( pos < 1 || pos > maxAstronauts )
     {
-        printf ( "No se permite un valor menor a 0 o mayor a %d, pruebe de nuevo\n", maxAstronauts );
+        printf ( "No se permite un valor menor o igual a 0 o mayor a %d, pruebe de nuevo\n", maxAstronauts );
         scanf ( "%d", &pos );
     }
     FILE *file = fopen(Fastronauts, "r+b");
@@ -460,7 +460,6 @@ void registerSpaceship()                         //Carga de datos y en archivo u
 
 void selectSpaceshipType(stSpaceship *type)
 {
-    stSpaceship spaceship;
     int tipo = 0;
     do
     {
@@ -526,7 +525,6 @@ void showSpaceshipByID()                      //Verifica si la nave existe, la b
     FILE * archive;
     archive = fopen(Fstarships, "rb");
     int ID = 0;
-    int option = 0;
     if(archive != NULL)
     {
         pprintf("Inserte <ID> de nave a buscar: \n");
@@ -678,49 +676,6 @@ void showAllSpaceships()                        //Muestra todas las naves cargad
     }
 }
 
-void changeFlightTime(int ID, int time_fly)        //Suma el tiempo de vuelo recibido
-{
-    FILE * archive;
-    archive = fopen(Fstarships, "w+b");
-    stSpaceship spaceship;
-    if(spaceshipExistByID(ID))
-    {
-        if(archive!= NULL)
-        {
-            fseek(archive, sizeof(stSpaceship) * (ID -1),SEEK_SET);
-            fread(&spaceship, sizeof(stSpaceship), 1,archive);
-            fseek(archive, sizeof(stSpaceship) * (-1),SEEK_CUR);
-            spaceship.flight_hours = spaceship.flight_hours + time_fly;
-            fwrite(&spaceship, sizeof(stSpaceship), 1, archive);
-            fclose(archive);
-        }
-    }
-}
-
-void changeSpaceshipFlightTime()                //Solicita un tiempo sin restricciones, por si se quisiese modificar un error de ingreso restando horas.
-{
-    system("cls");
-    int time;
-    int ID;
-    pprintf("Ingrese ID de la nave: ");
-    scanf("%i", &ID);
-    if(spaceshipExistByID(ID))
-    {
-        do
-        {
-            pprintf("Ingrese cantidad de horas de vuelo (mayor a 0): ");
-            scanf("%i", &time);
-        }
-        while(time < 0);
-
-        changeFlightTime(ID, time);
-    }
-    else
-    {
-        pprintf("ID nave invalida");
-    }
-}
-
 void showFlightTime(int ID)                        //Muestra el tiempo de vuelo por ID
 {
     FILE* archive;
@@ -739,7 +694,7 @@ void showFlightTime(int ID)                        //Muestra el tiempo de vuelo 
     }
 }
 
-void showFlightsAmount(int ID)                    //Muestra la cantidad de vuelos
+void showFlightsAmount(int ID)                    //Muestra la cantidad de vuelos de una nave
 {
 
     FILE* archive;
@@ -758,57 +713,87 @@ void showFlightsAmount(int ID)                    //Muestra la cantidad de vuelo
     }
 }
 
-void changeFlightsAmount(int ID, int times_fly)    //Cambia la cantidad de vuelos
+void changeSpaceshipFlightsAmount()         //cambia la cantidad de vuelos de la nave
 {
-    FILE * archive;
-    archive = fopen(Fstarships, "w+b");
     stSpaceship spaceship;
-    if(spaceshipExistByID(ID))
-    {
-        if(archive!= NULL)
-        {
-            fseek(archive, sizeof(stSpaceship) * (ID - 1), SEEK_SET);
-            fread(&spaceship, sizeof(stSpaceship), 1,archive);
-            fseek(archive, sizeof(stSpaceship) * (-1),SEEK_CUR);
-            spaceship.number_of_flights = spaceship.number_of_flights + times_fly;
-            fwrite(&spaceship, sizeof(stSpaceship), 1, archive);
-            fclose(archive);
-        }
+    FILE *file = fopen(Fstarships,"r+b");
+    if ( file != NULL ) {
+        int pos = selectSpaceship(), newAmmount = 0;
+        do {
+            printf( "Ingrese la nueva cantidad de vuelos\n");
+            scanf ( "%d", &newAmmount);
+        } while ( newAmmount < 0 );
+        fseek(file, sizeof(stSpaceship) * (pos-1), SEEK_SET);
+        fread(&spaceship, sizeof(stSpaceship), 1, file);
+        spaceship.number_of_flights = newAmmount;
+        fseek(file, sizeof(stSpaceship) * -1, SEEK_CUR);
+        fwrite(&spaceship, sizeof(stSpaceship), 1, file);
+        fclose(file);
     }
 }
 
-void changeSpaceshipFlightsAmount()
+int selectSpaceship()       //Selecciona un astronauta y retorna la posición del mismo
 {
-    int times = 0;
-    int ID = 0;
-    pprintf("Ingrese ID de la nave: ");
-    scanf("%i", &ID);
-    pprintf("Ingrese cantidad de vuelos: ");
-    scanf("%i", &times);
-    changeFlightsAmount(ID, times);
-    changeSpaceshipFlightTimeID(ID);
-
-}
-
-void changeSpaceshipFlightTimeID(int ID)                //Solicita un tiempo sin restricciones, por si se quisiese modificar un error de ingreso restando horas.
-{
-
-    int time;
-    do
+    stSpaceship spaceship;
+    int pos = 0, maxSpaceships = 0;
+    showAllSpaceships();
+    maxSpaceships = getTotalSpaceships();
+    pprintf ( "Seleccione una nave por ID.\n" );
+    scanf ( "%d", &pos );
+    while ( pos < 1 || pos > maxSpaceships )
     {
-        pprintf("Ingrese cantidad de horas: ");
-        system("cls");
-        scanf("%i", &time);
-        if(time<0)
+        printf ( "No se permite un valor menor o igual a 0 o mayor a %d, pruebe de nuevo\n", maxSpaceships );
+        scanf ( "%d", &pos );
+    }
+    FILE *file = fopen(Fstarships, "r+b");
+    if ( file != NULL )
+    {
+        fseek(file, sizeof(stSpaceship) * (pos-1), SEEK_SET);
+        fread(&spaceship, sizeof(stSpaceship), 1, file);
+        while ( pos < 1 || pos > maxSpaceships )
         {
             system("cls");
-            pprintf("Valor invalido\n");
-
+            pprintf ( "Registro no existente o valor menor a 1 no permitido, intente de nuevo\n" );
+            showAllSpaceships();
+            scanf ( "%d", &pos );
+            fseek(file, sizeof(stSpaceship) * (pos-1), SEEK_SET);
+            fread(&spaceship, sizeof(stSpaceship), 1, file);
         }
+        fclose(file);
     }
-    while(time<0);
+    return pos;
+}
 
-    changeFlightTime(ID, time);
+int getTotalSpaceships()        //Retorna la cantidad total de registros de naves
+{
+    int totalRegisters = 0;
+    FILE *file = fopen(Fstarships, "rb");
+    if ( file != NULL )
+    {
+        fseek(file, sizeof(stSpaceship) * 0, SEEK_END);
+        totalRegisters = ftell(file) / sizeof(stSpaceship);
+        fclose(file);
+    }
+    return totalRegisters;
+}
+
+void changeSpaceshipFlightTime()                //Cambia las horas de vuelo de una nave
+{
+    stSpaceship spaceship;
+    FILE *file = fopen(Fstarships,"r+b");
+    if ( file != NULL ) {
+        int pos = selectSpaceship(), newTime = 0;
+        do {
+            printf( "Ingrese la nueva cantidad de horas de vuelo de la nave\n");
+            scanf ( "%d", &newTime);
+        } while ( newTime < 0 );
+        fseek(file, sizeof(stSpaceship) * (pos-1), SEEK_SET);
+        fread(&spaceship, sizeof(stSpaceship), 1, file);
+        spaceship.flight_hours = newTime;
+        fseek(file, sizeof(stSpaceship) * -1, SEEK_CUR);
+        fwrite(&spaceship, sizeof(stSpaceship), 1, file);
+        fclose(file);
+    }
 }
 
 bool firstSpaceShip()                                               //verifica si hay al menos una nave registrada
@@ -901,7 +886,7 @@ void registerMission()                      //Registra una misión
     {
         stMission mission;
         int aux = 0; //contador para mostrar el listado de astronautas y naves obtenidas
-        int option = 1, flag = 0,  i = 0; //i, contador de tripulantes por misión
+        int  flag = 0,  i = 0; //i, contador de tripulantes por misión
         for ( aux = 0; aux < totalSpaceshipsList; aux++ )
         {
             printSpaceshipData(spaceships[aux]);

@@ -31,17 +31,17 @@
 	"Lib.h"
 	<unistd.h>
 
-1687980074 source:c:\users\nehuen\documents\github\trabajofinallab1\trabajofinallab1\lib.c
+1688025788 source:c:\users\nehuen\documents\github\trabajofinallab1\trabajofinallab1\lib.c
 	"Lib.h"
 	<unistd.h>
 
-1687977345 c:\users\nehuen\documents\github\trabajofinallab1\trabajofinallab1\lib.h
+1688025288 c:\users\nehuen\documents\github\trabajofinallab1\trabajofinallab1\lib.h
 	<stdio.h>
 	<time.h>
 	<stdbool.h>
 	<windows.h>
 
-1687977049 source:c:\users\nehuen\documents\github\trabajofinallab1\trabajofinallab1\main.c
+1688022252 source:c:\users\nehuen\documents\github\trabajofinallab1\trabajofinallab1\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
