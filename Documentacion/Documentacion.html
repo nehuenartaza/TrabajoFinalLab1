@@ -104,24 +104,30 @@
 </div>
 <div>
 	<h2>Otras funciones de Modificacion</h2>
-    <p>Estas funciones aplican</p>
+    <p>Estas funciones rotan en torno al usuario y sus preferencias</p>
 <ul>
   <li>
     <h3>pprintf(const char *str)</h3>
     <p>
-      Esta función imprime una cadena de caracteres de manera gradual en la salida estándar. Si la función <code>proceduralTextRead()</code> devuelve verdadero, la cadena se imprime carácter por carácter con una pausa de 1000 microsegundos entre cada uno. Después de imprimir la cadena completa, se realiza una pausa adicional de 10000 microsegundos. Si la función <code>proceduralTextRead()</code> devuelve falso, la cadena se imprime utilizando la función <code>printf()</code> de forma normal.
+      Esta función imprime una cadena de caracteres gradualmente en la salida estándar. Si la función <code>proceduralTextRead()</code> devuelve verdadero, la cadena se imprime carácter por carácter con una pausa de 1000 microsegundos entre cada uno. Después de imprimir la cadena completa, se realiza una pausa adicional de 10000 microsegundos. Si la función <code>proceduralTextRead()</code> devuelve falso, la cadena se imprime utilizando la función <code>printf()</code> de forma normal.
+    </p>
+  </li>
+  <li>
+    <h3>inThere(int forSearch, int array[], int valids)</h3>
+    <p>
+      Esta función verifica si un valor determinado está presente en un arreglo de enteros. Recibe el valor a buscar, el arreglo y la cantidad de elementos válidos en el arreglo. Itera sobre el arreglo y devuelve verdadero si encuentra el valor, y falso en caso contrario.
     </p>
   </li>
   <li>
     <h3>changeColor()</h3>
     <p>
-      Esta función permite al usuario cambiar el color del texto en la consola. Primero muestra las opciones de colores llamando a la función <code>textColorsOptions()</code>. Luego, solicita al usuario que ingrese un número de opción y llama a la función <code>colorOption()</code> para establecer el color seleccionado. El ciclo <code>do-while</code> continúa hasta que el usuario ingrese una opción válida. Finalmente, guarda el cambio de color llamando a la función <code>saveColorChange()</code>.
+      Esta función permite al usuario cambiar el color del texto en la consola. Muestra las opciones de colores llamando a la función <code>textColorsOptions()</code>. Luego, solicita al usuario que ingrese un número de opción y llama a la función <code>colorOption()</code> para establecer el color seleccionado. El ciclo <code>do-while</code> continúa hasta que el usuario ingrese una opción válida. Finalmente, guarda el cambio de color llamando a la función <code>saveColorChange()</code>.
     </p>
   </li>
   <li>
     <h3>setColor(int colorCode)</h3>
     <p>
-      Esta función establece el color de texto en la consola utilizando el código de color proporcionado. Recibe el parámetro <code>colorCode</code> que representa el código de color deseado y utiliza las funciones de la biblioteca de Windows para establecer el color.
+      Esta función establece el color de texto en la consola utilizando el código de color proporcionado. Utiliza funciones de la biblioteca de Windows para establecer el color.
     </p>
   </li>
   <li>
@@ -139,23 +145,28 @@
   <li>
     <h3>saveColorChange(int colorChosen)</h3>
     <p>
-      Esta función guarda el cambio de color seleccionado por el usuario. Crea una estructura <code>stUserData</code> que almacena el valor de <code>proceduralTextRead()</code> y <code>colorChosen</code>. Abre un archivo para escritura binaria, escribe los datos de la estructura en el archivo y luego lo cierra. Si ocurre un error al abrir el archivo, muestra un mensaje de error.
-    </p>
-  </li>
-  <li>
-    <h3>readUserData()</h3>
-    <p>
-      Esta función lee los datos del usuario almacenados en un archivo. Intenta abrir el archivo para lectura binaria. Si el archivo no existe, crea uno nuevo y escribe datos predeterminados en él. Si el archivo existe, lee los datos en una estructura <code>stUserData</code>, obtiene el color almacenado y llama a <code>colorOption()</code> para establecer ese color. Luego cierra el archivo.
-    </p>
-  </li>
-  <li>
-    <h3>proceduralTextRead()</h3>
-    <p>
-      Esta función lee el valor de <code>proceduralText</code> almacenado en un archivo y lo devuelve. Abre el archivo para lectura binaria, lee el valor y luego cierra el archivo.
-    </p>
-  </li>
+      Esta función guarda el cambio de color seleccionado por el usuario. Crea una estructura <code>stUserData</code> que almacena el valor de <code>proceduralTextRead()</code> y <code>colorChosen</code>. Abre un archivo para escritura binaria, escribe los datos en el archivo utilizando la función <code>fwrite()</code> y luego cierra el archivo. Si la operación de escritura es exitosa, muestra un mensaje de éxito utilizando la función <code>pprintf()</code>. Si no se puede abrir el archivo, muestra un mensaje de error. </p>
+</p>
+</li>
+<li>
+  <h3>readUserData()</h3>
+  <p>
+    Esta función lee los datos del usuario desde un archivo. Primero intenta abrir el archivo en modo lectura binaria. Si el archivo no existe, lo crea en modo escritura binaria y escribe valores predeterminados en él. Si el archivo existe, lee los datos almacenados en la estructura <code>stUserData</code> utilizando la función <code>fread()</code>. Luego, obtiene el valor del color del usuario y llama a la función <code>colorOption()</code> para establecer el color. Finalmente, cierra el archivo.
+  </p>
+</li>
+<li>
+  <h3>proceduralTextRead()</h3>
+  <p>
+    Esta función lee el valor de <code>proceduralText</code> desde un archivo y lo devuelve. Abre el archivo en modo lectura binaria, lee el valor almacenado en la estructura <code>stUserData</code> utilizando la función <code>fread()</code> y cierra el archivo. Devuelve el valor de <code>proceduralText</code>.
+  </p>
+</li>
+<li>
+  <h3>toggleProceduralText()</h3>
+  <p>
+    Esta función cambia el estado de <code>proceduralText</code> en el archivo. Abre el archivo en modo lectura y escritura binaria. Lee los datos almacenados en la estructura <code>stUserData</code> utilizando la función <code>fread()</code>. Luego, cambia el estado de <code>proceduralText</code> y lo sobrescribe en el archivo utilizando la función <code>fwrite()</code>. Muestra un mensaje indicando si se activó o desactivó el "Procedural Text". Por último, cierra el archivo.
+  </p>
+</li>
 </ul>
-
 
 
 </div>
