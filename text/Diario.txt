@@ -51,6 +51,12 @@ Creacion de documentacion tipo HTML para mejor navegacion e implementacion
 23/06 - 17:33 Nehuen terminó de armar las funciones "ChangeMissionStarshipID" y "RegisterMission" gracias a las funciones "starshipExistByID" y "starshipStatus" de Eloy. Nehuen encontró 1 array char sin utilizar en "changeStarshipType" y un stStarship sin utilizar en "searchSpaceshipByID" y las eliminó. Cambió casi todos los 'printf' por 'pprintf' en las funciones:
 RegisterAstronaut, ChangeAstronautName, ChangeAstronautLastName, ChangeAstronautNickname, ChangeAstronautAge, ChangeAstronautID, ChangeAstronautNationality, ChangeAstronautSpeciality, ChangeAstronautFlightTime, ChangeAstronautHoursSpaceStation, ChangeAstronautAmmountMissions, ChangeAstronautStatus, SelectAstronaut, ShowAstronauts, RegisterMission, ChangeMissionID, ChangeMissionStarshipID, ChangeMissionDetails, ChangeMissionShipment, ChangeMissionDestiny, ChangeMissionCrewmanList, ChangeMissionStatus, SelectMission y ShowMissions.
 
+24/06 - Fede:
+ Revisión general del código: mejora de la sintaxis, lógica y claridad tanto de las funciones y variables.
+ Edición de todas las variables a lo largo del main y las librerias para que haya consistencia en los llamados y declaraciones a lo largo de todas.
+ Entrega de feedback para considerar a la hora de crear/modificar funciones a futuro.
+
+
 25/05 - 13:29 Nehuen tomó algunas de las sugerencias y fallas encontradas por el Tester QA (Federico) y las usó:
 - "La funcion SelectAstronaut debería chequear que no se ingrese un valor de astronauta que no existe, además del valor menor a 0. Habria que hacer una funcion que retorne la cantidad de astronautas y use como condicion de mayor."
 - "Agregaria un printf confirmando el nuevo estado del astronauta, para que quede claro por pantalla si se retiró o está activo." (Función ChangeAstronautStatus).
@@ -73,4 +79,14 @@ Todos los nombres de las funciones referidas a misiones pasaron de "CamelCase" a
 En el cambio de nombres de funciones se generó un bug en la función "registerMission", una variable int tenía el mismo nombre que la función "astronautAvailability" por lo tanto el dato de tipo int pasó a llamarse "availabilityOfAstronaut" que confirma si el astronauta que se quiere agregar a la misión esté activo.
 26/06 - 20:22 - Nehuen eliminó las siguientes funciones ya que no cumplían con lo pedido:
 changeAstronautName - changeAstronautLastName - changeAstronautID - changeAstronautNationality - changeSpaceshipType - changeMissionID . Creó las funciones "firstAstronaut" y "firstMission". Borró de la función "registerAstronaut" la posibilidad de ingresar las horas y cantidad de misiones ya que era ilógico, se arregló un error en la carga de la ID, ya que si no existía un astronauta cargado, se rompía el código y el número de ID era un valor aleatorio, el mismo error se arregló en la función "registerMission". Arregló la función "changeAstronautStatus" ya que se podía dar de alta un astronauta retirado. Creó la función "autoChangeSpaceshipStatus" para modificar el estado de la nave automáticamente cuando una misión cambia de estado ya que "changeMissionStatus" no cumplía bien su función. Se agregó la validación de la edad en "registerAstronaut" para que sea mayor a 18 y menor a 70, además de 2 system("cls"); en dicha función. Se agregó un system("cls"); al final de la función "registerMission"
+
+26/06 - Fede:
+ Agregado de las validaciones en todas las funciones correspondientes.
+ Mejorada la lógica de la mayoría de las funciones.
+ Reducida la cantidad de lineas y mejorados los condicionales de las funciones.
+ Testeo de las funciones y persistencia de datos.
+
 28/06 - Eloy Realizo el sistema de menu junto a otras funciones como "toggleProceduralText"! 
+
+28/06 - Fede: 
+Testeo del menu, todas sus opciones, validaciones, etc.
