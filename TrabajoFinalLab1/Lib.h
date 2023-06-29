@@ -127,3 +127,4 @@ void colorOption(int option);                       //A - Aplica en un Switch el
 void saveColorChange(int colorChoosed);             //A - Salva la eleccion del usuario
 void readUserData();                                //  Busca los datos del usuario, si existe los aplica, si no, los crea por defecto
 bool proceduralTextRead();                          //  Lee el registro del usuario, si este desea el texto procedural habilitado, retorna true, caso contrario, false
+bool inThere(int, int[], int);
