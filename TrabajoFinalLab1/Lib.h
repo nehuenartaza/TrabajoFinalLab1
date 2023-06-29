@@ -87,7 +87,7 @@ void printSpaceshipStatus(int spaceshipStatus);                     // Imprime e
 int spaceshipStatus(int ID);                                        // Retorna el estado de la nave
 void printAllStarships();                                           // Muestra todas las naves cargadas en el archivo
 void changeFlightTime(int ID, int time_fly);                        // Cambia el tiempo de vuelo
-void changeSpaceshipFlightTime();                                   // Solicita un tiempo sin restricciones, por si se quisiese modificar un error de ingreso restando horas
+void changeSpaceshipFlightTimeID(int ID);                               // Solicita un tiempo sin restricciones, por si se quisiese modificar un error de ingreso restando horas
 void showFlightTime(int ID);                                        // Muestra el tiempo de vuelo por ID
 void showFlightsAmount(int ID);                                     // Muestra la cantidad de vuelos
 void changeFlightsAmount(int ID, int times_fly);                    // Cambia la cantidad de vuelos

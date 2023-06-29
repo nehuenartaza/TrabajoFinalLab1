@@ -790,7 +790,7 @@ void changeSpaceshipFlightsAmount()
 
 }
 
-void changeSpaceshipFlightTimeID(ID)                //Solicita un tiempo sin restricciones, por si se quisiese modificar un error de ingreso restando horas.
+void changeSpaceshipFlightTimeID(int ID)                //Solicita un tiempo sin restricciones, por si se quisiese modificar un error de ingreso restando horas.
 {
 
     int time;
