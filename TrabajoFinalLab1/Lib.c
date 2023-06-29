@@ -1004,11 +1004,13 @@ void changeMissionStarshipID()              //Se cambia la nave que se va a util
     FILE *file = fopen(Fmissions, "r+b");
     if ( file != NULL )
     {
-        fseek(file, sizeof(stMission) * pos, SEEK_SET);
+        fseek(file, sizeof(stMission) * (pos-1), SEEK_SET);
         fread(&mission, sizeof(stMission), 1, file);
+        showAllSpaceships();
         pprintf ( "Nueva nave para enviar a la mision (ingresar la ID): \n" );
         scanf ( "%d", &mission.ship_ID );
         flag = spaceshipExistByID(mission.ship_ID);
+
         while ( flag != true || shipAvailability != 1 )
         {
             pprintf ( "ID de nave no existente o nave no lista para su uso, intente de nuevo.\n" );
@@ -1033,7 +1035,7 @@ void changeMissionDetails()                 //Cambia la breve descripción de la 
     FILE *file = fopen(Fmissions, "r+b");
     if ( file != NULL )
     {
-        fseek(file, sizeof(stMission) * pos, SEEK_SET);
+        fseek(file, sizeof(stMission) * (pos-1), SEEK_SET);
         fread(&mission, sizeof(stMission), 1, file);
         pprintf ( "Nuevos detalles (max 50 caracteres): \n" );
         fflush(stdin);
@@ -1051,7 +1053,7 @@ void changeMissionShipment()                //Cambia el cargamento de la misión
     FILE *file = fopen(Fmissions, "r+b");
     if ( file != NULL )
     {
-        fseek(file, sizeof(stMission) * pos, SEEK_SET);
+        fseek(file, sizeof(stMission) * (pos-1), SEEK_SET);
         fread(&mission, sizeof(stMission), 1, file);
         pprintf ( "Nuevo cargamento: 1- Satelite, 2- Insumos para la EE\n" );
         scanf ( "%d", &mission.shipment );
@@ -1073,7 +1075,7 @@ void changeMissionDestination()             //Cambia el destino de la misión
     FILE *file = (Fmissions, "r+b");
     if ( file != NULL )
     {
-        fseek(file, sizeof(stMission) * pos, SEEK_SET);
+        fseek(file, sizeof(stMission) * (pos-1), SEEK_SET);
         fread(&mission, sizeof(stMission), 1, file);
         pprintf ( "Nuevo destino: 1- EEI, 2- Orbita terrestre, 3- Luna" );
         scanf ( "%d", &mission.destination );
@@ -1199,25 +1201,25 @@ int selectMission()                         //fedep: probar esto porfa//Seleccio
     stMission mission;
     int pos = 0;
     showMissions();
-    pprintf ( "Seleccione una mision:\n" );
+    pprintf ( "Seleccione una mision por ID: \n" );
     scanf ( "%d", &pos );
-    while ( pos < 0 )
+    while ( pos < 1 )
     {
-        pprintf ( "No se permite un valor menor a 0, pruebe de nuevo.\n" );
+        pprintf ( "No se permite un valor menor a 1, pruebe de nuevo.\n" );
         scanf ( "%d", &pos );
     }
     FILE *file = fopen(Fmissions, "r+b");
     if ( file != NULL )
     {
-        fseek(file, sizeof(stMission) * pos, SEEK_SET);
+        fseek(file, sizeof(stMission) * (pos-1), SEEK_SET);
         fread(&mission, sizeof(stMission), 1, file);
-        while ( feof(file) || pos < 0 )     //en teoría esto salva al programa, ej: tener 10 registros y que el usuario elija el registro 11, encargado fedep de probar esto
+        while ( feof(file) || pos < 1 )
         {
             system("cls");
-            pprintf ( "Registro no existente o valor menor a 0 no permitido, intente de nuevo.\n" );
+            pprintf ( "Registro no existente o valor menor a 1 no permitido, intente de nuevo.\n" );
             showMissions();
             scanf ( "%d", &pos );
-            fseek(file, sizeof(stMission) * pos, SEEK_SET);
+            fseek(file, sizeof(stMission) * (pos-1), SEEK_SET);
             fread(&mission, sizeof(stMission), 1, file);
         }
         fclose(file);
@@ -1228,7 +1230,7 @@ int selectMission()                         //fedep: probar esto porfa//Seleccio
 void showMissions()                         //muestra todas las misiones registradas
 {
     stMission mission;
-    int i = 0, j = 0;
+
     FILE *file = fopen(Fmissions, "rb");
     if ( file != NULL )
     {
@@ -1237,14 +1239,14 @@ void showMissions()                         //muestra todas las misiones registr
             fread(&mission, sizeof(stMission), 1, file);
             if ( !feof(file))
             {
-                printf ( "|%d| ID:%d, ID de nave:%d, ", i, mission.ID, mission.ship_ID );
+                printf ( " ID de mision: %d\n ID de nave: %d\n ", mission.ID, mission.ship_ID );
                 if ( mission.shipment == 1 )
                 {
-                    pprintf ( "Cargamento: satelite, " );
+                    pprintf ( "Cargamento: satelite\n " );
                 }
                 else
                 {
-                    pprintf ( "Cargamento: insumos para la EE, " );
+                    pprintf ( "Cargamento: insumos para la EE\n " );
                 }
                 if ( mission.destination == 1 )
                 {
@@ -1259,32 +1261,31 @@ void showMissions()                         //muestra todas las misiones registr
                     pprintf ( "Destino: Luna\n" );
                 }
                 printf ( "Resumen de Mision: %s\n", mission.mission_details );
-                for ( j = 0; j < mission.crewman_amount; j++ )
+                for (int j = 0; j < mission.crewman_amount; j++ )
                 {
                     printf ( "ID del Tripulante %d: %d\n", j+1, mission.crewmen[j] );
                 }
                 if ( mission.status == 1 )
                 {
-                    pprintf ( "Estado de mision: Lista" );
+                    pprintf ( "Estado de mision: Lista\n" );
                 }
                 else if ( mission.status == 2 )
                 {
-                    pprintf ( "Estado de mision: En vuelo" );
+                    pprintf ( "Estado de mision: En vuelo\n" );
                 }
                 else if ( mission.status == 3 )
                 {
-                    pprintf ( "Estado de mision: Retornada" );
+                    pprintf ( "Estado de mision: Retornada\n" );
                 }
                 else if ( mission.status == 4 )
                 {
-                    pprintf ( "Estado de mision: Cancelada" );
+                    pprintf ( "Estado de mision: Cancelada\n" );
                 }
                 else
                 {
-                    pprintf ( "Estado de mision: Fallida" );
+                    pprintf ( "Estado de mision: Fallida\n" );
                 }
             }
-            i++;
         }
     }
 }
@@ -1319,21 +1320,6 @@ bool firstMission()                             //verifica si al menos hay una m
     return firstMission;
 }
 
-bool inThere(int forSearch, int array[], int valids)
-{
-    bool isIn = false;
-    for(int i = 0; i < valids; i++)
-    {
-        if(forSearch == array[i])
-        {
-            isIn = true;
-            break;
-        }
-
-    }
-
-    return isIn;
-}
 
 
 //Otros
@@ -1356,6 +1342,22 @@ void pprintf(const char *str)
     {
         printf("%s", str);
     }
+}
+
+bool inThere(int forSearch, int array[], int valids)
+{
+    bool isIn = false;
+    for(int i = 0; i < valids; i++)
+    {
+        if(forSearch == array[i])
+        {
+            isIn = true;
+            break;
+        }
+
+    }
+
+    return isIn;
 }
 
 
