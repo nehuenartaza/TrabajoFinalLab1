@@ -767,7 +767,7 @@ void changeFlightsAmount(int ID, int times_fly)    //Cambia la cantidad de vuelo
     {
         if(archive!= NULL)
         {
-            fseek(archive, sizeof(stSpaceship) * (ID -1),SEEK_SET);
+            fseek(archive, sizeof(stSpaceship) * (ID - 1), SEEK_SET);
             fread(&spaceship, sizeof(stSpaceship), 1,archive);
             fseek(archive, sizeof(stSpaceship) * (-1),SEEK_CUR);
             spaceship.number_of_flights = spaceship.number_of_flights + times_fly;
@@ -779,24 +779,24 @@ void changeFlightsAmount(int ID, int times_fly)    //Cambia la cantidad de vuelo
 
 void changeSpaceshipFlightsAmount()
 {
-    int times;
-    int ID;
+    int times = 0;
+    int ID = 0;
     pprintf("Ingrese ID de la nave: ");
     scanf("%i", &ID);
     pprintf("Ingrese cantidad de vuelos: ");
     scanf("%i", &times);
     changeFlightsAmount(ID, times);
-    changeSpaceshipFlightTimeID();
+    changeSpaceshipFlightTimeID(ID);
 
 }
 
-void changeSpaceshipFlightTimeID(ID)                //Solicita un tiempo sin restricciones, por si se quisiese modificar un error de ingreso restando horas.
+void changeSpaceshipFlightTimeID(int ID)                //Solicita un tiempo sin restricciones, por si se quisiese modificar un error de ingreso restando horas.
 {
 
     int time;
     do
     {
-        pprintf("Ingrese cant de horas: ");
+        pprintf("Ingrese cantidad de horas: ");
         system("cls");
         scanf("%i", &time);
         if(time<0)
