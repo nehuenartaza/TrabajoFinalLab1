@@ -15,3 +15,19 @@
 	"Lib.h"
 	<unistd.h>
 
+1688026758 source:c:\users\eloy\documents\github\trabajofinallab1\spacexsystem\spacexsystemcode\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Lib.h"
+
+1688044868 c:\users\eloy\documents\github\trabajofinallab1\spacexsystem\spacexsystemcode\lib.h
+	<stdio.h>
+	<time.h>
+	<stdbool.h>
+	<windows.h>
+
+1688044851 source:c:\users\eloy\documents\github\trabajofinallab1\spacexsystem\spacexsystemcode\lib.c
+	"Lib.h"
+	<unistd.h>
+

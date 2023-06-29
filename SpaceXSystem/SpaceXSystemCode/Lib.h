@@ -78,7 +78,8 @@ int makeListOfAstronautsForMission(stAstronaut[]);
 void saveSpaceship(stSpaceship starship);                           // Guarda en la ultima posicion del archivo la nave recibida por parametro
 void registerSpaceship();                                           // Carga de datos y en archivo una nueva nave. Con parametros en automatico
 int getLastSpaceshipID();                                           // Obtiene la ultima ID del registro
-int changeSpaceshipStatus();                                        // Retorna el estado de la nave elegida: 1 lista para su uso, 2 en mision, 3 en mantenimiento, 4 de baja
+void changeSpaceshipStatus();                                        // Cambia el estado de la nave
+int changeSpaceshipStatusOptions();                                        // Retorna el estado de la nave elegida: 1 lista para su uso, 2 en mision, 3 en mantenimiento, 4 de baja
 void showSpaceshipByID();                                           // Verifica si la nave existe, la busca y permite modificar sus datos o visualizarla
 void showSpaceship(int);                                         // Muestra una nave por su ID
 bool spaceshipExistByID(int);                                    // Retorna verdadero si la nave existe en el archivo en base al ID recibido
@@ -97,6 +98,7 @@ int makeListOfSpaceshipsForMission(stSpaceship[]);
 void showAllSpaceships();
 int getTotalSpaceships();
 int selectSpaceship();
+bool isOnMission(int ID);
 
 //Misiones
 void registerMission();

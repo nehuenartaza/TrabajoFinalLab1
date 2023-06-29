@@ -436,7 +436,7 @@ void registerSpaceship()                         //Carga de datos y en archivo u
 {
     system("cls");
     stSpaceship spaceship;
-    if (!firstSpaceShip())
+    if (firstSpaceShip())
     {
         spaceship.ID = 1;
     }
@@ -495,7 +495,77 @@ int getLastSpaceshipID()                         //Obtiene la ultima ID del regi
     return spaceship.ID;
 }
 
-int changeSpaceshipStatus()                      //Retorna el estado de la nave elegida, 1 lista para su uso, 2 en mision, 3 en mantenimiento, 4 de baja
+void changeSpaceshipStatus()
+{
+
+    stSpaceship spaceship;
+    int ID = 0;
+    int newAmount = 0;
+    FILE* archive;
+    archive = fopen(Fstarships, "r+b");
+    if (archive != NULL)
+    {
+
+
+        system("cls");
+        ID = selectSpaceship();
+        if(!isOnMission(ID))
+        {
+            fseek(archive, sizeof(stSpaceship) * (ID - 1), SEEK_SET);
+
+            printf("Ingrese la nueva cantidad de vuelos: \n");
+            newAmount  = changeSpaceshipStatusOptions();
+
+            fread(&spaceship, sizeof(stSpaceship), 1, archive);
+            spaceship.status = newAmount;
+
+            fseek(archive, sizeof(stSpaceship) * (ID - 1), SEEK_SET);
+            fwrite(&spaceship, sizeof(stSpaceship), 1, archive);
+        }
+        else
+        {
+            system("cls");
+            pprintf("Esa nave esta en mision actualmente\n");
+            system("pause");
+
+        }
+        fclose(archive);
+    }
+
+}
+bool isOnMission(int ID)
+{
+
+    bool is = false;
+    FILE* archive;
+    stMission miss;
+    archive = fopen(Fmissions, "rb");
+    if(archive != NULL)
+    {
+
+        while(fread(&miss, sizeof(stMission),1,archive)==1)
+        {
+
+            if(miss.ship_ID == ID)
+            {
+
+
+                is = true;
+                break;
+
+            }
+
+
+        }
+
+
+        fclose(archive);
+    }
+
+
+    return is;
+}
+int changeSpaceshipStatusOptions()                      //Retorna el estado de la nave elegida, 1 lista para su uso, 2 en mision, 3 en mantenimiento, 4 de baja
 {
     int option = 0;
     do
@@ -660,12 +730,11 @@ void showAllSpaceships()                        //Muestra todas las naves cargad
     stSpaceship spaceship;
     if(archive != NULL)
     {
-        do
+
+        while(fread(&spaceship, sizeof(stSpaceship), 1, archive) ==1)
         {
-            fread(&spaceship, sizeof(stSpaceship), 1, archive);
             printSpaceshipData(spaceship);
         }
-        while(!feof(archive));
         fclose(archive);
     }
     else
@@ -713,60 +782,66 @@ void showFlightsAmount(int ID)                    //Muestra la cantidad de vuelo
     }
 }
 
-void changeSpaceshipFlightsAmount()         //cambia la cantidad de vuelos de la nave
+//arreglado
+void changeSpaceshipFlightsAmount() //cambia la cantidad de vuelos de la nave
 {
     stSpaceship spaceship;
-    FILE *file = fopen(Fstarships,"r+b");
-    if ( file != NULL )
+    int ID = 0;
+    FILE* archive;
+    archive = fopen(Fstarships, "r+b");
+    if (archive != NULL)
     {
-        int pos = selectSpaceship(), newAmmount = 0;
+        int newAmount = 0;
+
+        system("cls");
+        ID = selectSpaceship();
+
+        fseek(archive, sizeof(stSpaceship) * (ID - 1), SEEK_SET);
+
+        printf("Ingrese la nueva cantidad de vuelos: \n");
+        scanf("%d", &newAmount);
+
+        fread(&spaceship, sizeof(stSpaceship), 1, archive);
+        spaceship.number_of_flights += newAmount;
+
+        fseek(archive, sizeof(stSpaceship) * (ID - 1), SEEK_SET);
+        fwrite(&spaceship, sizeof(stSpaceship), 1, archive);
+
+        fclose(archive);
+    }
+    changeSpaceshipFlightTime();
+}
+
+
+int selectSpaceship()   //selecciona una nave y retorna la posicion de la misma
+{
+    stSpaceship spaceship;
+    FILE* archive;
+    archive = fopen(Fstarships, "rb");
+    int ID = 0;
+
+    if (archive != NULL)
+    {
         do
         {
-            printf( "Ingrese la nueva cantidad de vuelos\n");
-            scanf ( "%d", &newAmmount);
-        }
-        while ( newAmmount < 0 );
-        fseek(file, sizeof(stSpaceship) * (pos-1), SEEK_SET);
-        fread(&spaceship, sizeof(stSpaceship), 1, file);
-        spaceship.number_of_flights = newAmmount;
-        fseek(file, sizeof(stSpaceship) * -1, SEEK_CUR);
-        fwrite(&spaceship, sizeof(stSpaceship), 1, file);
-        fclose(file);
-    }
-}
-
-int selectSpaceship()       //Selecciona una nave y retorna la posición de la misma
-{
-    stSpaceship spaceship;
-    int pos = 0, maxSpaceships = 0;
-    showAllSpaceships();
-    maxSpaceships = getTotalSpaceships();
-    pprintf ( "Seleccione una nave por ID.\n" );
-    scanf ( "%d", &pos );
-    while ( pos < 1 || pos > maxSpaceships )
-    {
-        printf ( "No se permite un valor menor o igual a 1 o mayor a %d, pruebe de nuevo\n", maxSpaceships );
-        scanf ( "%d", &pos );
-    }
-    FILE *file = fopen(Fstarships, "r+b");
-    if ( file != NULL )
-    {
-        fseek(file, sizeof(stSpaceship) * (pos-1), SEEK_SET);
-        fread(&spaceship, sizeof(stSpaceship), 1, file);
-        while ( pos < 1 || pos > maxSpaceships )
-        {
-            system("cls");
-            pprintf ( "Registro no existente o valor menor a 1 no permitido, intente de nuevo\n" );
             showAllSpaceships();
-            scanf ( "%d", &pos );
-            fseek(file, sizeof(stSpaceship) * (pos-1), SEEK_SET);
-            fread(&spaceship, sizeof(stSpaceship), 1, file);
+            printf("Seleccione una nave por su ID:\n");
+            scanf("%i", &ID);
+            if (!spaceshipExistByID(ID))
+            {
+                system("cls");
+                printf("Ingrese un valor válido para la ID.\n");
+                system("pause");
+            }
         }
-        fclose(file);
-    }
-    return pos;
-}
+        while (!spaceshipExistByID(ID));
 
+        fclose(archive);
+    }
+
+    return ID;
+}
+//arreglado
 int getTotalSpaceships()        //Retorna la cantidad total de registros de naves
 {
     int totalRegisters = 0;
@@ -780,25 +855,31 @@ int getTotalSpaceships()        //Retorna la cantidad total de registros de nave
     return totalRegisters;
 }
 
-void changeSpaceshipFlightTime()                //Cambia las horas de vuelo de una nave
+void changeSpaceshipFlightTime()
 {
     stSpaceship spaceship;
-    FILE *file = fopen(Fstarships,"r+b");
-    if ( file != NULL )
+    FILE* archive = fopen(Fstarships, "r+b");
+    if (archive != NULL)
     {
-        int pos = selectSpaceship(), newTime = 0;
+        int pos = selectSpaceship();
+        int newTime = 0;
         do
         {
-            printf( "Ingrese la nueva cantidad de horas de vuelo de la nave\n");
-            scanf ( "%d", &newTime);
+            printf("Ingrese la nueva cantidad de horas de vuelo de la nave:\n");
+            scanf("%d", &newTime);
+            if (newTime < 0)
+            {
+                printf("Ingrese un valor válido para las horas de vuelo.\n");
+            }
         }
-        while ( newTime < 0 );
-        fseek(file, sizeof(stSpaceship) * (pos-1), SEEK_SET);
-        fread(&spaceship, sizeof(stSpaceship), 1, file);
+        while (newTime < 0);
+
+        fseek(archive, sizeof(stSpaceship) * (pos - 1), SEEK_SET);
+        fread(&spaceship, sizeof(stSpaceship), 1, archive);
         spaceship.flight_hours = newTime;
-        fseek(file, sizeof(stSpaceship) * -1, SEEK_CUR);
-        fwrite(&spaceship, sizeof(stSpaceship), 1, file);
-        fclose(file);
+        fseek(archive, sizeof(stSpaceship) * (pos - 1), SEEK_SET);
+        fwrite(&spaceship, sizeof(stSpaceship), 1, archive);
+        fclose(archive);
     }
 }
 
@@ -812,7 +893,7 @@ bool firstSpaceShip()                                               //verifica s
     if (archive != NULL)
     {
         stSpaceship spaceship;
-        if (fread(&spaceship, sizeof(stSpaceship), 1, archive) == 1)
+        if (fread(&spaceship, sizeof(stSpaceship), 1, archive) == 0)
         {
             firstOne = true;
         }
@@ -1645,7 +1726,9 @@ void mainMenu()
             break;
             if(option != 0)
             {
-                printf("Opcion invalida, ingrese un valor valido");
+                system("cls");
+                printf("Opcion invalida, ingrese un valor valido\n");
+                system("pause");
             }
             break;
         }
@@ -1681,7 +1764,9 @@ void systemMenu()
         default:
             if(option != 0)
             {
-                printf("Opcion invalida, ingrese un valor valido");
+                system("cls");
+                printf("Opcion invalida, ingrese un valor valido\n");
+                system("pause");
             }
             break;
         }
@@ -1720,7 +1805,9 @@ void astronautMenu()
         default:
             if(option != 0)
             {
-                printf("Opcion invalida, ingrese un valor valido");
+                system("cls");
+                printf("Opcion invalida, ingrese un valor valido\n");
+                system("pause");
             }
             break;
         }
@@ -1776,7 +1863,9 @@ void modifyAstronautMenu()
         default:
             if(option != 0)
             {
-                printf("Opcion invalida, ingrese un valor valido");
+                system("cls");
+                printf("Opcion invalida, ingrese un valor valido\n");
+                system("pause");
             }
             break;
         }
@@ -1810,7 +1899,9 @@ void consultAsMenu()
         default:
             if(option != 0)
             {
-                printf("Opcion invalida, ingrese un valor valido");
+                system("cls");
+                printf("Opcion invalida, ingrese un valor valido\n");
+                system("pause");
             }
             break;
         }
@@ -1849,7 +1940,9 @@ void spaceshipMenu()
         default:
             if(option != 0)
             {
-                printf("Opcion invalida, ingrese un valor valido");
+                system("cls");
+                printf("Opcion invalida, ingrese un valor valido\n");
+                system("pause");
             }
             break;
         }
@@ -1881,7 +1974,9 @@ void consultSpMenu()
         default:
             if(option != 0)
             {
-                printf("Opcion invalida, ingrese un valor valido");
+                system("cls");
+                printf("Opcion invalida, ingrese un valor valido\n");
+                system("pause");
             }
             break;
         }
@@ -1899,6 +1994,8 @@ void modifySpMenu()
         pprintf(" 1- Modificar estado de la nave.\n");
         pprintf(" 2- Modificar horas de vuelo.\n");
         pprintf(" 3- Modificar cantidad de viajes.\n");
+        pprintf(" 0- Volver.\n");
+
         pprintf(">: ");
         fflush(stdin);
         scanf("%i", &option);
@@ -1910,16 +2007,18 @@ void modifySpMenu()
             changeSpaceshipStatus();
             break;
         case 2:
-        changeSpaceshipFlightTime();
+            changeSpaceshipFlightTime();
             break;
         case 3:
-          changeSpaceshipFlightsAmount();
+            changeSpaceshipFlightsAmount();
             break;
 
         default:
             if(option != 0)
             {
-                printf("Opcion invalida, ingrese un valor valido");
+                system("cls");
+                printf("Opcion invalida, ingrese un valor valido\n");
+                system("pause");
             }
             break;
         }
@@ -1960,7 +2059,9 @@ void missionMenu()
         default:
             if(option != 0)
             {
-                printf("Opcion invalida, ingrese un valor valido");
+                system("cls");
+                printf("Opcion invalida, ingrese un valor valido\n");
+                system("pause");
             }
             break;
         }
@@ -1998,7 +2099,9 @@ void consultMissionMenu()
         default:
             if(option != 0)
             {
-                printf("Opcion invalida, ingrese un valor valido");
+                system("cls");
+                printf("Opcion invalida, ingrese un valor valido\n");
+                system("pause");
             }
             break;
         }
@@ -2048,7 +2151,9 @@ void modifyMissionMenu()
         default:
             if(option != 0)
             {
-                printf("Opcion invalida, ingrese un valor valido");
+                system("cls");
+                printf("Opcion invalida, ingrese un valor valido\n");
+                system("pause");
             }
             break;
         }
@@ -2085,7 +2190,9 @@ void optionsMenu()
         default:
             if(option != 0)
             {
-                printf("Opcion invalida, ingrese un valor valido");
+                system("cls");
+                printf("Opcion invalida, ingrese un valor valido\n");
+                system("pause");
             }
             break;
         }
