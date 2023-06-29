@@ -47,11 +47,11 @@
 	<string.h>
 	"Lib.h"
 
-1688020562 source:h:\documentos\utn\primer cuatrimestre\programacion 1 y labo 1\trabajofinallab1\trabajofinallab1\lib.c
+1688025915 source:h:\documentos\utn\primer cuatrimestre\programacion 1 y labo 1\trabajofinallab1\trabajofinallab1\lib.c
 	"Lib.h"
 	<unistd.h>
 
-1688020605 h:\documentos\utn\primer cuatrimestre\programacion 1 y labo 1\trabajofinallab1\trabajofinallab1\lib.h
+1688025889 h:\documentos\utn\primer cuatrimestre\programacion 1 y labo 1\trabajofinallab1\trabajofinallab1\lib.h
 	<stdio.h>
 	<time.h>
 	<stdbool.h>

@@ -717,12 +717,15 @@ void changeSpaceshipFlightsAmount()         //cambia la cantidad de vuelos de la
 {
     stSpaceship spaceship;
     FILE *file = fopen(Fstarships,"r+b");
-    if ( file != NULL ) {
+    if ( file != NULL )
+    {
         int pos = selectSpaceship(), newAmmount = 0;
-        do {
+        do
+        {
             printf( "Ingrese la nueva cantidad de vuelos\n");
             scanf ( "%d", &newAmmount);
-        } while ( newAmmount < 0 );
+        }
+        while ( newAmmount < 0 );
         fseek(file, sizeof(stSpaceship) * (pos-1), SEEK_SET);
         fread(&spaceship, sizeof(stSpaceship), 1, file);
         spaceship.number_of_flights = newAmmount;
@@ -732,7 +735,7 @@ void changeSpaceshipFlightsAmount()         //cambia la cantidad de vuelos de la
     }
 }
 
-int selectSpaceship()       //Selecciona un astronauta y retorna la posición del mismo
+int selectSpaceship()       //Selecciona una nave y retorna la posición de la misma
 {
     stSpaceship spaceship;
     int pos = 0, maxSpaceships = 0;
@@ -742,7 +745,7 @@ int selectSpaceship()       //Selecciona un astronauta y retorna la posición del
     scanf ( "%d", &pos );
     while ( pos < 1 || pos > maxSpaceships )
     {
-        printf ( "No se permite un valor menor o igual a 0 o mayor a %d, pruebe de nuevo\n", maxSpaceships );
+        printf ( "No se permite un valor menor o igual a 1 o mayor a %d, pruebe de nuevo\n", maxSpaceships );
         scanf ( "%d", &pos );
     }
     FILE *file = fopen(Fstarships, "r+b");
@@ -781,12 +784,15 @@ void changeSpaceshipFlightTime()                //Cambia las horas de vuelo de u
 {
     stSpaceship spaceship;
     FILE *file = fopen(Fstarships,"r+b");
-    if ( file != NULL ) {
+    if ( file != NULL )
+    {
         int pos = selectSpaceship(), newTime = 0;
-        do {
+        do
+        {
             printf( "Ingrese la nueva cantidad de horas de vuelo de la nave\n");
             scanf ( "%d", &newTime);
-        } while ( newTime < 0 );
+        }
+        while ( newTime < 0 );
         fseek(file, sizeof(stSpaceship) * (pos-1), SEEK_SET);
         fread(&spaceship, sizeof(stSpaceship), 1, file);
         spaceship.flight_hours = newTime;
@@ -926,26 +932,27 @@ void registerMission()                      //Registra una misión
         }
         while ( mission.shipment <= 0 || mission.shipment > 2 );
 
-            do
+        do
+        {
+            system("cls");
+            showAstronauts();
+            printf ( "Ingrese la ID del tripulante que va a estar presente en la mision: \n" );
+            flag = 0;
+            scanf ( "%d", &mission.crewmen[i]);
+            for(aux = 0; aux < totalAstronautsList; aux++)
             {
-                system("cls");
-                showAstronauts();
-                printf ( "Ingrese la ID del tripulante que va a estar presente en la mision: \n" );
-                flag = 0;
-                scanf ( "%d", &mission.crewmen[i]);
-                for(aux = 0; aux < totalAstronautsList; aux++)
-                    {
-                    if ( astronauts[aux].ID == mission.crewmen[i])
-                        {
-                            flag = 1;
-                        }
-                    }
-                if(flag == 0)
+                if ( astronauts[aux].ID == mission.crewmen[i])
                 {
-                    pprintf("La ID ingresada no corresponde a un astronauta existente.\n");
+                    flag = 1;
                 }
-                pprintf("Para ingresar mas astronautas en la mision, acceder a la seccion de modificar lista de Astronautas.\n");
-            }while ( flag == 0 );
+            }
+            if(flag == 0)
+            {
+                pprintf("La ID ingresada no corresponde a un astronauta existente.\n");
+            }
+            pprintf("Para ingresar mas astronautas en la mision, acceder a la seccion de modificar lista de Astronautas.\n");
+        }
+        while ( flag == 0 );
 
 
         mission.crewman_amount = 1;       //cantidad total de tripulantes
@@ -966,9 +973,9 @@ void registerMission()                      //Registra una misión
         system("cls");
     }
     else
-        {
-            pprintf("No hay suficientes naves o astronautas disponibles para crear una mision.");
-        }
+    {
+        pprintf("No hay suficientes naves o astronautas disponibles para crear una mision.");
+    }
 }
 
 void saveMission(stMission the_mission)     //Guarda la misión en un archivo
@@ -1100,12 +1107,13 @@ void changeMissionCrewmanList()             //Cambia el listado de tripulantes q
                     pprintf("Ingrese una ID valida\n");
                 }
 
-            flag = confirmAstronautID(lastID);
-            if(flag != 1)
-            {
-                pprintf ( "El astronauta no existe, intente de nuevo.\n" );
+                flag = confirmAstronautID(lastID);
+                if(flag != 1)
+                {
+                    pprintf ( "El astronauta no existe, intente de nuevo.\n" );
+                }
             }
-            }while(inThere(lastID,mission.crewmen,i) || flag != 1);
+            while(inThere(lastID,mission.crewmen,i) || flag != 1);
 
             mission.crewmen[i] = lastID;
 
@@ -1660,7 +1668,7 @@ void systemMenu()
         pprintf("2- Misiones\n");
         pprintf("3- Naves\n");
         pprintf("0- Volver\n");
-pprintf(">: ");
+        pprintf(">: ");
         fflush(stdin);
         scanf("%i",&option);
         switch(option)
@@ -1699,7 +1707,7 @@ void astronautMenu()
         pprintf("2- Modificar astronauta\n");
         pprintf("3- Consulta astronauta\n");
         pprintf("0- Volver\n");
-pprintf(">: ");
+        pprintf(">: ");
         fflush(stdin);
         scanf("%i",&option);
         switch(option)
@@ -1742,7 +1750,7 @@ void modifyAstronautMenu()
         pprintf("6- Cambiar Cantidad de misiones\n");
         pprintf("7- Cambiar Horas en la estacion espacial\n");
         pprintf("0- Volver\n");
-pprintf(">: ");
+        pprintf(">: ");
         fflush(stdin);
         scanf("%i",&option);
         switch(option)
@@ -1793,7 +1801,7 @@ void consultAsMenu()
         pprintf("1- Ver Por ID\n");
         pprintf("2- Ver Todos los Astronautas\n");
         pprintf("0- Volver\n");
-pprintf(">: ");
+        pprintf(">: ");
         fflush(stdin);
         scanf("%i",&option);
         switch(option)
@@ -1926,8 +1934,9 @@ void modifySpMenu()
 }
 
 //Menues Misiones
-void missionMenu(){
-int option = 0;
+void missionMenu()
+{
+    int option = 0;
 
 
     do
@@ -1948,10 +1957,10 @@ int option = 0;
             registerMission();
             break;
         case 2:
-           modifyMissionMenu();
+            modifyMissionMenu();
             break;
         case 3:
-           consultMissionMenu();
+            consultMissionMenu();
             break;
 
         default:
@@ -1988,7 +1997,7 @@ void consultMissionMenu()
             showMissionsByID();
             break;
         case 2:
-             showMissions();
+            showMissions();
             break;
 
 
@@ -2024,22 +2033,22 @@ void modifyMissionMenu()
         {
 
         case 1:
-        changeMissionCrewmanList();
+            changeMissionCrewmanList();
             break;
         case 2:
-        changeMissionDestination();
+            changeMissionDestination();
             break;
         case 3:
-        changeMissionDetails();
+            changeMissionDetails();
             break;
         case 4:
-        changeMissionShipment();
+            changeMissionShipment();
             break;
         case 5:
-        changeMissionStarshipID();
+            changeMissionStarshipID();
             break;
         case 6:
-        changeMissionStatus();
+            changeMissionStatus();
             break;
 
         default:
@@ -2076,7 +2085,7 @@ void optionsMenu()
             changeColor();
             break;
         case 2:
-        toggleProceduralText();
+            toggleProceduralText();
             break;
 
         default:
@@ -2091,9 +2100,10 @@ void optionsMenu()
 }
 
 
-void infoMenu(){
+void infoMenu()
+{
     system("cls");
- printf(" _______          _            _                                        _               _______ _             _  \n");
+    printf(" _______          _            _                                        _               _______ _             _  \n");
     printf("(_______)        | |          (_)                                   _  (_)             (_______|_)           | | \n");
     printf("    _  ____ _____| |__  _____  _  ___     ____   ____ _____  ____ _| |_ _  ____ ___     _____   _ ____  _____| | \n");
     printf("   | |/ ___|____ |  _ \\(____ || |/ _ \\   |  _ \\ / ___|____ |/ ___|_   _) |/ ___) _ \\   |  ___) | |  _ \\(____ | | \n");
@@ -2107,13 +2117,13 @@ void infoMenu(){
     printf("| |____| |_| | | | | |___ | | |_| | | | |   _| |_   | (____|   /_| | (_____ _____) )                             \n");
     printf(" \\______)___/|_|_|_|_(___/|_|\___/|_| |_|  (_____)   |_______)_____/|_______|______/                              \n");
 
-printf("\n\n\n");
-printf("\n\n\n");
+    printf("\n\n\n");
+    printf("\n\n\n");
 
-pprintf("                                 Aristegui Federico - Artaza Nehuen - Roldan Eloy\n                                  ");
-printf("\n\n\n");
-printf("\n\n\n");
-printf("\n\n\n");
+    pprintf("                                 Aristegui Federico - Artaza Nehuen - Roldan Eloy\n                                  ");
+    printf("\n\n\n");
+    printf("\n\n\n");
+    printf("\n\n\n");
 
-system("pause");
+    system("pause");
 }
