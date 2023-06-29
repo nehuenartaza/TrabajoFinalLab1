@@ -276,7 +276,7 @@ void showAstronauts()      //Muestra la totalidad del contenido del archivo de a
             if ( !feof(file) && aux.status == 1)
             {
                 printf("-----------------------------------------\n");
-                printf ( "> Nombre: %s\n> Apellido:%s\n> Apodo: '%s'\n> Edad:%d\n, ID:%d\n> Horas de vuelo:%d\n> Horas en la estacion:%d\n", aux.name, aux.last_name, aux.nickname, aux.age, aux.ID, aux.flight_hours, aux.hours_at_spaceStation );
+                printf ( "> ID:%d\n> Nombre: %s\n> Apellido:%s\n> Apodo: '%s'\n> Edad:%d\n> Horas de vuelo:%d\n> Horas en la estacion:%d\n", aux.ID, aux.name, aux.last_name, aux.nickname, aux.age, aux.flight_hours, aux.hours_at_spaceStation );
                 printf ( "> Especialidad: %s\n> Nacionalidad: %s\n> Misiones Hechas: %d\n", aux.speciality, aux.nationality, aux.missions );
                 pprintf ( "> Estado: activo\n" );
                 printf("-----------------------------------------\n");
@@ -1195,7 +1195,18 @@ void changeMissionStatus()                  //Cambia el estado de la misión, 1-l
         fclose(file);
     }
 }
-
+int getTotalMissions()        //Retorna la cantidad total de registros de Mishions
+{
+    int totalRegisters = 0;
+    FILE *file = fopen(Fmissions, "rb");
+    if ( file != NULL )
+    {
+        fseek(file, sizeof(stMission) * 0, SEEK_END);
+        totalRegisters = ftell(file) / sizeof(stMission);
+        fclose(file);
+    }
+    return totalRegisters;
+}
 int selectMission()                         //fedep: probar esto porfa//Selecciona una misión y retorna la posición de la misma
 {
     stMission mission;
@@ -1289,7 +1300,84 @@ void showMissions()                         //muestra todas las misiones registr
         }
     }
 }
+void showMissionsByID()                         //muestra la mision Por ID
+{
+    stMission mission;
+    int ID = 0;
+    FILE *file = fopen(Fmissions, "rb");
+    if ( file != NULL )
+    {
+        while ( !feof(file))
+        {
+            do
+            {
+                pprintf("Ingrese el ID a buscar");
+                fflush(stdin);
+                scanf("%i", &ID);
+                if(ID < 1 || ID > getTotalMissions())
+                {
+                    system("cls");
+                    pprintf("Esa Mision no existe / Valor invalido");
 
+                }
+
+            }
+            while(ID < 1 || ID > getTotalMissions());
+
+
+            fread(&mission, sizeof(stMission), 1, file);
+            if ( !feof(file) && mission.ID == ID)
+            {
+                printf ( " ID de mision: %d\n ID de nave: %d\n ", mission.ID, mission.ship_ID );
+                if ( mission.shipment == 1 )
+                {
+                    pprintf ( "Cargamento: satelite\n " );
+                }
+                else
+                {
+                    pprintf ( "Cargamento: insumos para la EE\n " );
+                }
+                if ( mission.destination == 1 )
+                {
+                    pprintf ( "Destino: EEI\n" );
+                }
+                else if ( mission.destination == 2 )
+                {
+                    pprintf ( "Destino: Orbita Terrestre\n" );
+                }
+                else
+                {
+                    pprintf ( "Destino: Luna\n" );
+                }
+                printf ( "Resumen de Mision: %s\n", mission.mission_details );
+                for (int j = 0; j < mission.crewman_amount; j++ )
+                {
+                    printf ( "ID del Tripulante %d: %d\n", j+1, mission.crewmen[j] );
+                }
+                if ( mission.status == 1 )
+                {
+                    pprintf ( "Estado de mision: Lista\n" );
+                }
+                else if ( mission.status == 2 )
+                {
+                    pprintf ( "Estado de mision: En vuelo\n" );
+                }
+                else if ( mission.status == 3 )
+                {
+                    pprintf ( "Estado de mision: Retornada\n" );
+                }
+                else if ( mission.status == 4 )
+                {
+                    pprintf ( "Estado de mision: Cancelada\n" );
+                }
+                else
+                {
+                    pprintf ( "Estado de mision: Fallida\n" );
+                }
+            }
+        }
+    }
+}
 int getLastMissionID()                       //Toma la última ID de misión registrada y la retorna
 {
     stMission mission;
@@ -1386,6 +1474,7 @@ void setColor(int colorCode)
 
 void textColorsOptions()
 {
+    system("cls");
     pprintf("Seleccione un color:\n");
     setColor(FOREGROUND_BLUE | FOREGROUND_INTENSITY);
     pprintf("1. Azul\n");
@@ -1489,5 +1578,557 @@ bool proceduralTextRead()
     return userData.proceduralText;
 }
 
+void toggleProceduralText()
+{
+
+    system("cls");
+    stUserData userData;
+
+    FILE * archive;
+    archive = fopen(FuserData, "r+b");
+    if(archive != NULL)
+    {
+        fread(&userData, sizeof(userData), 1, archive);
+        fseek(archive, 0, SEEK_SET);
+        if(userData.proceduralText)
+        {
+            pprintf("Procedural Text desactivado\n");
+            userData.proceduralText = false;
+
+        }
+        else
+        {
+            pprintf("Procedural Text Activado\n");
+            userData.proceduralText = true;
+
+        }
+        fwrite(&userData, sizeof(userData),1,archive);
+
+
+        fclose(archive);
+    }
+
+    system("pause");
+}
 
 //Menus
+void mainMenu()
+{
+    int option= 0;
+    do
+    {
+
+        system("cls");
+        printf("      ########## ########### ########    ##   ######       ###       ########### ########### ######## ########### \n");
+        printf("     #+#            #+#     +#+   +#+   +#+  +#+  +#+      +#+           #+#     #+#       #+#    #+#    #+#      \n");
+        printf("    +#+            +#+     +#+    +#+  +#+  +#+    +#+     +#+           +#+     +#+       +#+           +#+       \n");
+        printf("   :#::+::#       +#+     +#+     +#+ +#+  +#+      +#+    +#+           +#+     +#++:++#  +#++:++#++    +#+        \n");
+        printf("  +#+            +#+     +#+      #+##+#  +#+########+#+   +#+           +#+     +#+              +#+    +#+         \n");
+        printf(" #+#            #+#     #+#       #+#+#  +#+          +#+  #+#           #+#     #+#       #+#    #+#    #+#          \n");
+        printf("###        ########### ###        ####  +#+            +#+ ##########    ###     ########## ########     ###           \n\n\n");
+
+        pprintf("1- Sistema\n");
+        pprintf("2- Opciones\n");
+        pprintf("3- Info\n");
+        pprintf("0- Salir\n");
+        pprintf(">: ");
+        fflush(stdin);
+        scanf("%i",&option);
+
+
+        switch(option)
+        {
+
+        case 1:
+            systemMenu();
+            break;
+        case 2:
+            optionsMenu();
+            break;
+        case 3:
+            infoMenu();
+            break;
+        default:
+            break;
+            if(option != 0)
+            {
+                printf("Opcion invalida, ingrese un valor valido");
+            }
+            break;
+        }
+
+
+    }
+    while(option !=0);
+
+
+
+
+}
+void systemMenu()
+{
+    int option = 0;
+    do
+    {
+        system("cls");
+        pprintf("1- Astronautas\n");
+        pprintf("2- Misiones\n");
+        pprintf("3- Naves\n");
+        pprintf("0- Volver\n");
+pprintf(">: ");
+        fflush(stdin);
+        scanf("%i",&option);
+        switch(option)
+        {
+
+        case 1:
+            astronautMenu();
+            break;
+        case 2:
+            missionMenu();
+            break;
+        case 3:
+            infoMenu();
+            break;
+
+        default:
+            if(option != 0)
+            {
+                printf("Opcion invalida, ingrese un valor valido");
+            }
+            break;
+        }
+    }
+    while(option != 0);
+}
+//Menues Astronautas
+void astronautMenu()
+{
+    int option = 0;
+
+
+    do
+    {
+        system("cls");
+        pprintf("1- Agregar astronauta\n");
+        pprintf("2- Modificar astronauta\n");
+        pprintf("3- Consulta astronauta\n");
+        pprintf("0- Volver\n");
+pprintf(">: ");
+        fflush(stdin);
+        scanf("%i",&option);
+        switch(option)
+        {
+
+        case 1:
+            registerAstronaut();
+            break;
+        case 2:
+            modifyAstronautMenu();
+            break;
+        case 3:
+            consultAsMenu();
+            break;
+
+        default:
+            if(option != 0)
+            {
+                printf("Opcion invalida, ingrese un valor valido");
+            }
+            break;
+        }
+    }
+    while(option != 0);
+}
+void modifyAstronautMenu()
+{
+
+    int option = 0;
+
+
+    do
+    {
+        system("cls");
+        pprintf("1- Cambiar Apodo\n");
+        pprintf("2- Cambiar Edad\n");
+        pprintf("3- Cambiar Especialidad\n");
+        pprintf("4- Cambiar Estado\n");
+        pprintf("5- Cambiar Horas de vuelo\n");
+        pprintf("6- Cambiar Cantidad de misiones\n");
+        pprintf("7- Cambiar Horas en la estacion espacial\n");
+        pprintf("0- Volver\n");
+pprintf(">: ");
+        fflush(stdin);
+        scanf("%i",&option);
+        switch(option)
+        {
+
+
+        case 1:
+            changeAstronautNickname();
+            break;
+        case 2:
+            changeAstronautAge();
+            break;
+        case 3:
+            changeAstronautSpeciality();
+            break;
+        case 4:
+            changeAstronautStatus();
+            break;
+        case 5:
+            changeAstronautFlightTime();
+            break;
+        case 6:
+            changeAstronautAmmountMissions();
+            break;
+        case 7:
+            changeAstronautHoursSpaceStation();
+            break;
+
+        default:
+            if(option != 0)
+            {
+                printf("Opcion invalida, ingrese un valor valido");
+            }
+            break;
+        }
+    }
+    while(option != 0);
+}
+void consultAsMenu()
+{
+
+    int option = 0;
+
+
+    do
+    {
+        system("cls");
+        pprintf("1- Ver Por ID\n");
+        pprintf("2- Ver Todos los Astronautas\n");
+        pprintf("0- Volver\n");
+pprintf(">: ");
+        fflush(stdin);
+        scanf("%i",&option);
+        switch(option)
+        {
+
+        case 1:
+            showAstronautByID();
+            break;
+        case 2:
+            showAstronauts();
+            break;
+        default:
+            if(option != 0)
+            {
+                printf("Opcion invalida, ingrese un valor valido");
+            }
+            break;
+        }
+    }
+    while(option != 0);
+}
+//Menues Spaceship
+void spaceshipMenu()
+{
+    int option = 0;
+    do
+    {
+        system("cls");
+        pprintf("1- Agregar Nave\n");
+        pprintf("2- Modificar Nave\n");
+        pprintf("3- Consultar naves\n");
+
+        pprintf("0- Volver\n");
+        pprintf(">: ");
+        fflush(stdin);
+        scanf("%i",&option);
+        switch(option)
+        {
+
+        case 1:
+            registerSpaceship();
+            break;
+        case 2:
+            modifySpMenu();
+            break;
+        case 3:
+            consultSpMenu();
+            break;
+
+
+        default:
+            if(option != 0)
+            {
+                printf("Opcion invalida, ingrese un valor valido");
+            }
+            break;
+        }
+    }
+    while(option != 0);
+}
+void consultSpMenu()
+{
+    int option = 0;
+    do
+    {
+        system("cls");
+        pprintf("1- Ver por ID\n");
+        pprintf("2- Ver todas las Naves\n");
+        pprintf("0- Volver\n");
+        pprintf(">: ");
+        fflush(stdin);
+        scanf("%i",&option);
+        switch(option)
+        {
+
+        case 1:
+            showSpaceshipByID();
+
+            break;
+        case 2:
+            showAllSpaceships();
+            break;
+        default:
+            if(option != 0)
+            {
+                printf("Opcion invalida, ingrese un valor valido");
+            }
+            break;
+        }
+    }
+    while(option != 0);
+}
+void modifySpMenu()
+{
+
+    int option = 0;
+    do
+    {
+        system("cls");
+
+        pprintf(" 1- Modificar estado de la nave.\n");
+        pprintf(" 2- Modificar horas de vuelo.\n");
+        pprintf(" 3- Modificar cantidad de viajes.\n");
+        pprintf(">: ");
+        fflush(stdin);
+        scanf("%i", &option);
+
+        switch(option)
+        {
+
+        case 1:
+            changeSpaceshipStatus();
+            break;
+        case 2:
+            changeSpaceshipFlightTime();
+            break;
+        case 3:
+            changeSpaceshipFlightsAmount();
+            break;
+
+        default:
+            if(option != 0)
+            {
+                printf("Opcion invalida, ingrese un valor valido");
+            }
+            break;
+        }
+    }
+    while(option != 0);
+}
+
+//Menues Misiones
+void missionMenu(){
+int option = 0;
+
+
+    do
+    {
+        system("cls");
+        pprintf("1- Agregar mision\n");
+        pprintf("2- Modificar mision\n");
+        pprintf("3- Consulta mision\n");
+
+        pprintf("0- Volver\n");
+        pprintf(">: ");
+        fflush(stdin);
+        scanf("%i",&option);
+        switch(option)
+        {
+
+        case 1:
+            registerMission();
+            break;
+        case 2:
+           modifyMissionMenu();
+            break;
+        case 3:
+           consultMissionMenu();
+            break;
+
+        default:
+            if(option != 0)
+            {
+                printf("Opcion invalida, ingrese un valor valido");
+            }
+            break;
+        }
+    }
+    while(option != 0);
+
+
+}
+void consultMissionMenu()
+{
+
+    int option = 0;
+    do
+    {
+        system("cls");
+
+        pprintf(" 1- Ver por ID.\n");
+        pprintf(" 2- Ver todas las misiones.\n");
+        pprintf(" 0- Volver.\n");
+        pprintf(">: ");
+        fflush(stdin);
+        scanf("%i", &option);
+
+        switch(option)
+        {
+
+        case 1:
+            showMissionsByID();
+            break;
+        case 2:
+             showMissions();
+            break;
+
+
+        default:
+            if(option != 0)
+            {
+                printf("Opcion invalida, ingrese un valor valido");
+            }
+            break;
+        }
+    }
+    while(option != 0);
+}
+void modifyMissionMenu()
+{
+    int option = 0;
+
+
+    do
+    {
+        system("cls");
+        pprintf("1- Modificar tripulantes\n"); //amongus
+        pprintf("2- Modificar destino\n");
+        pprintf("3- Modificar detalles\n");
+        pprintf("4- Modificar cargamento\n");
+        pprintf("5- Modificar nave asignada\n");
+        pprintf("6- Modificar estado\n");
+        pprintf("0- Volver\n");
+        pprintf(">: ");
+        fflush(stdin);
+        scanf("%i",&option);
+        switch(option)
+        {
+
+        case 1:
+        changeMissionCrewmanList();
+            break;
+        case 2:
+        changeMissionDestination();
+            break;
+        case 3:
+        changeMissionDetails();
+            break;
+        case 4:
+        changeMissionShipment();
+            break;
+        case 5:
+        changeMissionStarshipID();
+            break;
+        case 6:
+        changeMissionStatus();
+            break;
+
+        default:
+            if(option != 0)
+            {
+                printf("Opcion invalida, ingrese un valor valido");
+            }
+            break;
+        }
+    }
+    while(option != 0);
+}
+
+//Menues Extra
+void optionsMenu()
+{
+
+    int option = 0;
+    do
+    {
+        system("cls");
+
+        pprintf(" 1- Cambiar color de la consola.\n");
+        pprintf(" 2- Desactivar / Activar Texto procedural.\n");
+        pprintf(" 0- Volver\n");
+        pprintf(">: ");
+        fflush(stdin);
+        scanf("%i", &option);
+
+        switch(option)
+        {
+
+        case 1:
+            changeColor();
+            break;
+        case 2:
+        toggleProceduralText();
+            break;
+
+        default:
+            if(option != 0)
+            {
+                printf("Opcion invalida, ingrese un valor valido");
+            }
+            break;
+        }
+    }
+    while(option != 0);
+}
+
+
+void infoMenu(){
+    system("cls");
+ printf(" _______          _            _                                        _               _______ _             _  \n");
+    printf("(_______)        | |          (_)                                   _  (_)             (_______|_)           | | \n");
+    printf("    _  ____ _____| |__  _____  _  ___     ____   ____ _____  ____ _| |_ _  ____ ___     _____   _ ____  _____| | \n");
+    printf("   | |/ ___|____ |  _ \\(____ || |/ _ \\   |  _ \\ / ___|____ |/ ___|_   _) |/ ___) _ \\   |  ___) | |  _ \\(____ | | \n");
+    printf("   | | |   / ___ | |_) ) ___ || | |_| |  | |_| | |   / ___ ( (___  | |_| ( (__| |_| |  | |     | | | | / ___ | | \n");
+    printf("   |_|_|   \\_____|____/\\_____|| |\\___/   |  __/|_|   \\_____|\____)  \\__)_|\\____)____/   |_|     |_|_| |_\\_____|\_)\n");
+    printf("                             (__/        |_|                                                                 \n");
+    printf(" _______            _      _                ___      ______  _____  ______  ______                               \n");
+    printf("(_______)          (_)    (_)              (___)    (_____ \\(_____)\\____ \\(_____ \\                              \n");
+    printf(" _       ___  ____  _  ___ _  ___  ____       _       ____) )  __ _  ____) )_____) )                             \n");
+    printf("| |     / _ \\|    \\| |/___) |/ _ \\|  _ \\     | |     / ____/ |/ /| |/ ____/(_____ (                              \n");
+    printf("| |____| |_| | | | | |___ | | |_| | | | |   _| |_   | (____|   /_| | (_____ _____) )                             \n");
+    printf(" \\______)___/|_|_|_|_(___/|_|\___/|_| |_|  (_____)   |_______)_____/|_______|______/                              \n");
+
+printf("\n\n\n");
+printf("\n\n\n");
+
+pprintf("                                 Aristegui Federico - Artaza Nehuen - Roldan Eloy\n                                  ");
+printf("\n\n\n");
+printf("\n\n\n");
+printf("\n\n\n");
+
+system("pause");
+}

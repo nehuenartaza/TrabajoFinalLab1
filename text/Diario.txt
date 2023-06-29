@@ -74,10 +74,3 @@ En el cambio de nombres de funciones se generó un bug en la función "registerM
 26/06 - 20:22 - Nehuen eliminó las siguientes funciones ya que no cumplían con lo pedido:
 changeAstronautName - changeAstronautLastName - changeAstronautID - changeAstronautNationality - changeSpaceshipType - changeMissionID . Creó las funciones "firstAstronaut" y "firstMission". Borró de la función "registerAstronaut" la posibilidad de ingresar las horas y cantidad de misiones ya que era ilógico, se arregló un error en la carga de la ID, ya que si no existía un astronauta cargado, se rompía el código y el número de ID era un valor aleatorio, el mismo error se arregló en la función "registerMission". Arregló la función "changeAstronautStatus" ya que se podía dar de alta un astronauta retirado. Creó la función "autoChangeSpaceshipStatus" para modificar el estado de la nave automáticamente cuando una misión cambia de estado ya que "changeMissionStatus" no cumplía bien su función. Se agregó la validación de la edad en "registerAstronaut" para que sea mayor a 18 y menor a 70, además de 2 system("cls"); en dicha función. Se agregó un system("cls"); al final de la función "registerMission"
 
-27/06
-- Eloy cambio la ruta de acceso de los archivos txt que estaban en la carpeta raiz del proyecto
-- Se agrego un cls a register astronauta
-- Se reorganizo el "showAstronaunts" para que sea mas legible
-- Se agrego una pausa para poder leer el registro
-- Se crearon menues y se anexo las respectivas funciones a cada uno (falta anexar algunas y terminar los otros)
-28/06 - 13:07 - Nehuen hizo las funciones showAstronautByID, makeListOfSpaceshipsForMissionmakeListOfAstronautsForMission. Se re-hizo la funcion registerMission ya que era muy complicado corregir los errores. Ahora los astronautas y naves disponibles están en 2 arreglos, las variables como "shipAvailability", "AvailabilityOfAstronaut", "SpaceshipExist" y todos los condicionales que verificaban la ID de la nave y los astronautas fueron borradas ya que las funciones "makeListOfSpaceshipsForMission" y "makeListOfAstronautsForMission" se encargaban de filtrar naves que estén listas y astronautas que estuvieran activos.

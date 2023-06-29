@@ -112,8 +112,22 @@ void showMissions();
 int getLastMissionID();
 bool firstMission();
 int getTotalMissions();
+void showMissionsByID();
 
 //Menu
+void mainMenu();
+void systemMenu();
+void astronautMenu();
+void modifyAstronautMenu();
+void consultAsMenu();
+void spaceshipMenu();
+void consultSpMenu();
+void modifySpMenu();
+void missionMenu();
+void consultMissionMenu();
+void modifyMissionMenu();
+void optionsMenu();
+void infoMenu();
 
 
 //Otros
