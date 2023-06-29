@@ -52,7 +52,7 @@ typedef struct
 {
     int consoleColor;
     bool proceduralText;
-}stUserData;
+} stUserData;
 
 //Astronautas
 void registerAstronaut();
