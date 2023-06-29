@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="icon" href="media/icons/moonflag.ico" type="image/x-icon">
+	<title>Documentacion</title>
+</head>
+<body style="background-color:#ffffff;">
+		  <header>
+    <nav>
+      <a href="index.html">Inicio</a> | <a href="Diario.html">Diario</a> | <a href="Matriz.html">Matriz de Errores</a> | 
+      <a href="QA.html">Revision QA</a>
+   
+      <hr>
+    </nav>
+  </header>
+<H1>Documentacion oficial TP Laboratorio COM 1</h1>
+<hr>
+<h2>Dependencias:</h2>
+    <ul>
+        <li>
+            <strong>stdio.h:</strong> Proporciona las funciones básicas de entrada y salida estándar, como printf y scanf.
+        </li>
+        <li>
+            <strong>stdlib.h:</strong> Contiene funciones para realizar operaciones de asignación de memoria, control de procesos y otras utilidades.
+        </li>
+        <li>
+            <strong>string.h:</strong> Ofrece funciones para manipular cadenas de caracteres, como strcpy y strlen.
+        </li>
+       
+        <li>
+            <strong>unistd.h:</strong> Proporciona funciones para el acceso a características específicas del sistema operativo, como la función sleep.
+        </li>
+        <li>
+            <strong>time.h:</strong> Contiene funciones para trabajar con fechas y tiempos.
+        </li>
+        <li>
+            <strong>stdbool.h:</strong> Define el tipo de dato bool y los valores true y false.
+        </li>
+        <li>
+            <strong>windows.h:</strong> Archivo de cabecera específico de Windows que contiene definiciones para la programación de Windows.
+        </li>
+    </ul>
+    <hr>
+    <div>
+    <h2>Constantes:</h2>
+    <ul>
+        <li>
+            <strong>dimInt:</strong> Macro que define la dimensión de un array de enteros como 15.
+        </li>
+        <li>
+            <strong>dimChar:</strong> Macro que define la dimensión de un array de caracteres como 50.
+        </li>
+        <li>
+            <strong>Fastronauts:</strong> Constante que representa el nombre del archivo binario "astronautsData.bin".
+        </li>
+        <li>
+            <strong>Fstarships:</strong> Constante que representa el nombre del un archivo binario "starshipsData.bin".
+        </li>
+        <li>
+            <strong>Fmissions:</strong> Constante que representa el nombre del un archivo binario "missionsData.bin".
+        </li>
+        <li>
+            <strong>FuserData:</strong> Constante que representa el nombre del un archivo binario "userData.bin".
+        </li>
+    </ul>
+   
+    </div>
+    <div>
+  <hr>
+<h2>Estructuras utilizadas</h2>
+ <ul> 
+
+<img src="media/img/Estructuras.png" alt="Imagen de estructuras" style="200px"></img>
+</ul>
+
+</div>
+ <hr>
+<div>
+<h2>Astronautas</h2>
+    <p>Función que realiza operaciones relacionadas con los astronautas.</p>
+<ul>
+  
+  <li>
+    <h3>registerAstronaut()</h3>
+    <p>Registra un astronauta.</p>
+  </li>
+  <li>
+    <h3>saveAstronaut(stAstronaut user)</h3>
+    <p>Guarda un astronauta en un archivo.</p>
+  </li>
+  <li>
+    <h3>confirmAstronautID(int ID)</h3>
+    <p>Usada para retornar un flag=1 si la ID enviada se encontró en un registro.</p>
+  </li>
+  <li>
+    <h3>changeAstronautNickname()</h3>
+    <p>Cambia el apodo de un astronauta.</p>
+  </li>
+  <li>
+    <h3>changeAstronautAge()</h3>
+    <p>Cambia la edad de un astronauta.</p>
+  </li>
+  <li>
+    <h3>changeAstronautSpeciality()</h3>
+    <p>Cambia la especialidad de un astronauta.</p>
+  </li>
+  <li>
+    <h3>changeAstronautFlightTime()</h3>
+    <p>Cambia las horas de vuelo de un astronauta.</p>
+  </li>
+  <li>
+    <h3>changeAstronautHoursSpaceStation()</h3>
+    <p>Cambia las horas que estuvo un astronauta en la estación espacial.</p>
+  </li>
+  <li>
+    <h3>changeAstronautAmmountMissions()</h3>
+    <p>Cambia la cantidad de misiones en las que participó un astronauta.</p>
+  </li>
+  <li>
+    <h3>changeAstronautStatus()</h3>
+    <p>Cambia el estado de un astronauta, 1-Activo, 2-Retirado.</p>
+  </li>
+  <li>
+    <h3>selectAstronaut()</h3>
+    <p>Selecciona un astronauta y retorna la posición del mismo.</p>
+  </li>
+  <li>
+    <h3>showAstronauts()</h3>
+    <p>Muestra la totalidad del contenido del archivo de astronautas.</p>
+  </li>
+  <li>
+    <h3>astronautAvailability(int ID)</h3>
+    <p>Retorna la disponibilidad del astronauta, 1-activo, 2-retirado, NULL-no existe.</p>
+  </li>
+  <li>
+    <h3>getLastAstronautID()</h3>
+    <p>Toma la última ID de astronauta registrada y la retorna.</p>
+  </li>
+  <li>
+    <h3>getTotalAstronauts()</h3>
+    <p>Retorna la cantidad total de registros de astronautas.</p>
+  </li>
+  <li>
+    <h3>firstAstronaut()</h3>
+    <p>Verifica si al menos hay un astronauta registrado.</p>
+  </li>
+  <li>
+    <h3>showAstronautByID()</h3>
+    <p>Muestra un astronauta con el ID especificado.</p>
+
+  </li>
+  <li>
+    <h3>showActiveAstronauts()</h3>
+    <p>Muestra los astronautas activos.</p>
+  </li>
+  <li>
+    <h3>showRetiredAstronauts()</h3>
+    <p>Muestra los astronautas retirados.</p>
+  </li>
+  <li>
+    <h3>searchAstronautByName()</h3>
+    <p>Busca un astronauta por nombre y muestra su información.</p>
+  </li>
+</ul>
+</div>
+<hr>
+<div>
+   <h2>Naves</h2> 
+  <p>Funciones que realizan operaciones relacionadas con las naves</p>
+  <ul>
+ 
+   
+
+  <li>
+    <h3>void saveSpaceship(stSpaceship spaceship)</h3>
+    <p>Guarda en la última posición del archivo la nave recibida por parámetro</p>
+  </li>
+  <li>
+    <h3>void registerSpaceship()</h3>
+    <p>Carga de datos y en archivo una nueva nave. Con parámetros en automático</p>
+  </li>
+  <li>
+    <h3>void selectSpaceshipType(stSpaceship *type)</h3>
+    <p>Recibe el tipo de nave</p>
+  </li>
+  <li>
+    <h3>int getLastSpaceshipID()</h3>
+    <p>Obtiene la última ID del registro</p>
+  </li>
+  <li>
+    <h3>int changeSpaceshipStatus()</h3>
+    <p>Retorna el estado de la nave elegida: 1 lista para su uso, 2 en misión, 3 en mantenimiento, 4 de baja</p>
+  </li>
+  <li>
+    <h3>void showSpaceshipByID()</h3>
+    <p>Verifica si la nave existe, la busca y permite modificar sus datos o visualizarla</p>
+  </li>
+  <li>
+    <h3>void showSpaceship(int ID)</h3>
+    <p>Muestra una nave por su ID</p>
+  </li>
+  <li>
+    <h3>bool spaceshipExistByID(int ID)</h3>
+    <p>Retorna verdadero si la nave existe en el archivo en base al ID recibido</p>
+  </li>
+  <li>
+    <h3>void printSpaceshipData(stSpaceship spaceship)</h3>
+    <p>Imprime por pantalla los datos de la nave</p>
+  </li>
+  <li>
+    <h3>void printSpaceshipStatus(int spaceshipStatus)</h3>
+    <p>Imprime el estado de la nave</p>
+  </li>
+  <li>
+    <h3>int spaceshipStatus(int ID)</h3>
+    <p>Retorna el estado de la nave</p>
+  </li>
+  <li>
+    <h3>void showAllSpaceships()</h3>
+    <p>Muestra todas las naves cargadas en el archivo</p>
+  </li>
+  <li>
+    <h3>void showFlightTime(int ID)</h3>
+    <p>Muestra el tiempo de vuelo por ID</p>
+  </li>
+  <li>
+    <h3>void showFlightsAmount(int ID)</h3>
+    <p>Muestra la cantidad de vuelos de una nave</p>
+  </li>
+  <li>
+    <h3>void changeSpaceshipFlightsAmount()</h3>
+    <p>Cambia la cantidad de vuelos de la nave</p>
+  </li>
+  <li>
+    <h3>int selectSpaceship()</h3>
+    <p>Selecciona una nave y retorna la posición de la misma</p>
+  </li>
+  <li>
+    <h3>int getTotalSpaceships()</h3>
+    <p>Retorna la cantidad total de registros de naves</p>
+ </li>
+  <li>
+    <h3>void updateSpaceship(stSpaceship spaceship)</h3>
+    <p>Actualiza los datos de una nave en el archivo</p>
+  </li>
+  <li>
+    <h3>void deleteSpaceship()</h3>
+    <p>Elimina una nave del archivo</p>
+  </li>
+  <li>
+    <h3>void deleteSpaceshipByID(int ID)</h3>
+    <p>Elimina una nave del archivo en base a su ID</p>
+  </li>
+  <li>
+    <h3>void showSpaceshipMenu()</h3>
+    <p>Muestra el menú de opciones para gestionar las naves</p>
+  </li>
+</ul>
+</div>
+<hr>
+<div>
+   <h2>Misiones</h2>
+    <p>Funciones que realizan operaciones relacionadas a las Misiones</p>
+  
+<ul>
+  
+   
+  <li>
+    <h3>void registerMission()</h3>
+    <p>Registra una misión</p>
+  </li>
+  <li>
+    <h3>void saveMission(stMission the_mission)</h3>
+    <p>Guarda la misión en un archivo</p>
+  </li>
+  <li>
+    <h3>void changeMissionStarshipID()</h3>
+    <p>Se cambia la nave que se va a utilizar en la misión</p>
+  </li>
+  <li>
+    <h3>void changeMissionDetails()</h3>
+    <p>Cambia la breve descripción de la misión</p>
+  </li>
+  <li>
+    <h3>void changeMissionShipment()</h3>
+    <p>Cambia el cargamento de la misión</p>
+  </li>
+  <li>
+    <h3>void changeMissionDestination()</h3>
+    <p>Cambia el destino de la misión</p>
+  </li>
+  <li>
+    <h3>void changeMissionCrewmanList()</h3>
+    <p>Cambia el listado de tripulantes que se van a enviar a la misión</p>
+  </li>
+  <li>
+    <h3>void changeMissionStatus()</h3>
+    <p>Cambia el estado de la misión, 1-listo, 2-en vuelo, 3-retornada, 4-cancelada, 5-fallida</p>
+  </li>
+  <li>
+    <h3>int getTotalMissions()</h3>
+    <p>Retorna la cantidad total de registros de Misions</p>
+  </li>
+  <li>
+    <h3>int selectMission()</h3>
+    <p>Selecciona una misión y retorna la posición de la misma</p>
+  </li>
+  <li>
+    <h3>void showMissions()</h3>
+    <p>Muestra todas las misiones registradas</p>
+  </li>
+</ul>
+
+<hr>
+
+</div>
+
+<div>
+	<h2>Otras funciones de Modificacion</h2>
+    <p>Estas funciones rotan en torno al usuario y sus preferencias</p>
+<ul>
+  <li>
+    <h3>pprintf(const char *str)</h3>
+    <p>
+      Esta función imprime una cadena de caracteres gradualmente en la salida estándar. Si la función <code>proceduralTextRead()</code> devuelve verdadero, la cadena se imprime carácter por carácter con una pausa de 1000 microsegundos entre cada uno. Después de imprimir la cadena completa, se realiza una pausa adicional de 10000 microsegundos. Si la función <code>proceduralTextRead()</code> devuelve falso, la cadena se imprime utilizando la función <code>printf()</code> de forma normal.
+    </p>
+  </li>
+  <li>
+    <h3>inThere(int forSearch, int array[], int valids)</h3>
+    <p>
+      Esta función verifica si un valor determinado está presente en un arreglo de enteros. Recibe el valor a buscar, el arreglo y la cantidad de elementos válidos en el arreglo. Itera sobre el arreglo y devuelve verdadero si encuentra el valor, y falso en caso contrario.
+    </p>
+  </li>
+  <li>
+    <h3>changeColor()</h3>
+    <p>
+      Esta función permite al usuario cambiar el color del texto en la consola. Muestra las opciones de colores llamando a la función <code>textColorsOptions()</code>. Luego, solicita al usuario que ingrese un número de opción y llama a la función <code>colorOption()</code> para establecer el color seleccionado. El ciclo <code>do-while</code> continúa hasta que el usuario ingrese una opción válida. Finalmente, guarda el cambio de color llamando a la función <code>saveColorChange()</code>.
+    </p>
+  </li>
+  <li>
+    <h3>setColor(int colorCode)</h3>
+    <p>
+      Esta función establece el color de texto en la consola utilizando el código de color proporcionado. Utiliza funciones de la biblioteca de Windows para establecer el color.
+    </p>
+  </li>
+  <li>
+    <h3>textColorsOptions()</h3>
+    <p>
+      Esta función muestra las opciones de colores disponibles al usuario. Utiliza la función <code>pprintf()</code> para imprimir gradualmente las opciones de color en la consola, utilizando diferentes colores para resaltar cada opción. Luego llama a la función <code>readUserData()</code> para leer los datos del usuario.
+    </p>
+  </li>
+  <li>
+    <h3>colorOption(int option)</h3>
+    <p>
+      Esta función establece el color de texto en la consola según la opción seleccionada por el usuario. Recibe el parámetro <code>option</code> que representa la opción de color elegida y utiliza una declaración <code>switch</code> para asignar el código de color correspondiente.
+    </p>
+  </li>
+  <li>
+    <h3>saveColorChange(int colorChosen)</h3>
+    <p>
+      Esta función guarda el cambio de color seleccionado por el usuario. Crea una estructura <code>stUserData</code> que almacena el valor de <code>proceduralTextRead()</code> y <code>colorChosen</code>. Abre un archivo para escritura binaria, escribe los datos en el archivo utilizando la función <code>fwrite()</code> y luego cierra el archivo. Si la operación de escritura es exitosa, muestra un mensaje de éxito utilizando la función <code>pprintf()</code>. Si no se puede abrir el archivo, muestra un mensaje de error. </p>
+</p>
+</li>
+<li>
+  <h3>readUserData()</h3>
+  <p>
+    Esta función lee los datos del usuario desde un archivo. Primero intenta abrir el archivo en modo lectura binaria. Si el archivo no existe, lo crea en modo escritura binaria y escribe valores predeterminados en él. Si el archivo existe, lee los datos almacenados en la estructura <code>stUserData</code> utilizando la función <code>fread()</code>. Luego, obtiene el valor del color del usuario y llama a la función <code>colorOption()</code> para establecer el color. Finalmente, cierra el archivo.
+  </p>
+</li>
+<li>
+  <h3>proceduralTextRead()</h3>
+  <p>
+    Esta función lee el valor de <code>proceduralText</code> desde un archivo y lo devuelve. Abre el archivo en modo lectura binaria, lee el valor almacenado en la estructura <code>stUserData</code> utilizando la función <code>fread()</code> y cierra el archivo. Devuelve el valor de <code>proceduralText</code>.
+  </p>
+</li>
+<li>
+  <h3>toggleProceduralText()</h3>
+  <p>
+    Esta función cambia el estado de <code>proceduralText</code> en el archivo. Abre el archivo en modo lectura y escritura binaria. Lee los datos almacenados en la estructura <code>stUserData</code> utilizando la función <code>fread()</code>. Luego, cambia el estado de <code>proceduralText</code> y lo sobrescribe en el archivo utilizando la función <code>fwrite()</code>. Muestra un mensaje indicando si se activó o desactivó el "Procedural Text". Por último, cierra el archivo.
+  </p>
+</li>
+</ul>
+
+
+</div>
+
+
+<footer> <hr><nav>
+	
+      <a href="index.html">Inicio</a> | <a href="Diario.html">Diario</a> | <a href="Matriz.html">Matriz de Errores</a>| 
+      <a href="QA.html">Revision QA</a>
+     
+    </nav>
+</footer>
+</body>
+</html>

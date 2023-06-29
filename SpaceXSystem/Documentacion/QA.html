@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>QA</title>
+  <link rel="icon" href="media/icons/book.ico" type="image/x-icon">
+</head>
+<body style="background-color:#ffffff;">
+<header>
+    <nav>
+    	<a href="index.html">Inicio</a> | <a href="Diario.html">Diario</a> | <a href="Documentacion.html">Documentación</a> | 
+      <a href="Matriz.html">Matriz de Soluciones</a>
+      <hr>
+    </nav>
+ </header>
+ <div>
+<H1>Historial QA de revisiones</H1>
+<p>En esta seccion se detallan cambios + sugerencias, principalmente se utilizo durante el desarrollo del mismo, no tendria validez de revision actualmente. Ya que los cambios fueron aplicados.<br>
+Listado creado mediante revision de codigo de Federico Aristegui.</p>
+</div>
+<hr>
+<h2>QA lib.c</h2>
+<h2>CAMBIOS + SUGERENCIAS</h2>
+<ul>
+  <li>El elemento "hours_flight" y todas sus apariciones de la estructura astronautas fueron renombrados a "flight_hours".</li>
+  <li>El elemento "ammount_flights" y todas sus apariciones de la estructura naves espaciales fueron renombradas a "number_of_flights".</li>
+  <li>El elemento "hours_flight" y todas sus apariciones de la estructura naves espaciales fueron renombradas a "flight_hours".</li>
+  <li>El elemento "ID_ship" y todas sus apariciones de la estructura misiones fueron renombradas a "ship_ID".</li>
+  <li>El elemento "destiny" y todas sus apariciones de la estructura misiones fueron renombradas a "destination".</li>
+  <li>El elemento "crewmans" y todas sus apariciones de la estructura misiones fueron renombradas a "crewmen".</li>
+  <li>El elemento "details_of_mission" y todas sus apariciones de la estructura misiones fueron renombradas a "mission_details".</li>
+  <li>El elemento "ammount_crewmans" y todas sus apariciones de la estructura misiones fueron renombradas a "crewman_amount".</li>
+  <li>Renombradas las funciones "showAmmountFlys", "changeAmmountFlys" y "changeAmmountFlysbyUser" por: "showFlightsAmount", "changeFlightsAmount" y "changeFlightsAmountByUser", respectivamente.</li>
+  <li>Renombrada la función "ChangeMissionDestiny" por "ChangeMissionDestination".</li>
+  <li>Renombradas las funciones "ChangeFlyTime", "showFlyTime" y "ChangeFlyTimebyUser" por: "ChangeFlightTime", "showFlightTime" y "ChangeFlightTimeByUser".</li>
+  <li>Editado el texto de los printf en la función RegisterAstrounat, para mejorar la claridad.</li>
+  <li>(SUGERENCIA IMPLEMENTADA POR NEHUEN) La función SelectAstronaut debería chequear que no se ingrese un valor de astronauta que no existe, además del valor menor a 0. Habría que hacer una función que retorne la cantidad de astronautas y use como condición de mayor.</li>
+  <li>En (469), edité la condición del do-while de "&&" a "||", de lo contrario se rompe la función.</li>
+</ul>
+<h2>REVISAR</h2>
+<ul>
+  <li>(323) (SUGERENCIA TOMADA Y CHEQUEADA POR NEHUEN) ¿Es necesario ese if? Acaba de entrar al while con la misma condición.</li>
+  <li>(149) Pondría las declaraciones de esas dos variables en distintas líneas, para mejorar la claridad.</li>
+  <li>(260) Idem</li>
+  <li>(146) No sé si tiene sentido cambiarle la ID a un astronauta, ya que nunca se borran de la base de datos. Es dudoso tener esa función.</li>
+  <li>(432) Idem pero con el tipo de nave, una nave de la nada no se transforma en otra. No me parece que tenga sentido.</li>
+  <li>(865) Idem para ID de misión, no tiene sentido cambiarle la ID una vez que se creó.</li>
+  <li>(257) (SUGERENCIA TOMADA E IMPLEMENTADA POR NEHUEN) Agregaría un printf confirmando el nuevo estado del astronauta, para que quede claro por pantalla si se retiró o está activo.</li>
+  <li>(469) (SUGERENCIA TOMADA Y MODIFICADA POR NEHUEN) Revisar los números para cada estado en el PDF del TP, se podría modificar para que haya consistencia.</li>
+  <li>Revisar consistencia del término starship/spaceship/spacecraft, se mezcla demasiado. Sugiero utilizar un término consistente en todas las instancias del trabajo (véase función en 1167, por ejemplo).</li>
+  <li>Revisar consistencia a la hora de cargar una nave nueva. Cuando cargamos un astronauta nuevo, en la misma función cargamos todos los datos directamente. Para una nave, tenemos que primero crear el ID de la nave y luego, en otra función aparte, cargamos los datos de la nave (394).</li>
+  <li>(807) (SUGERENCIA TOMADA Y PRINTF ARREGLADO POR NEHUEN) ¿Pide la cantidad de astronautas que van a participar de la misión o la ID? Me confunde un poco cómo está enunciado el printf.</li>
+  <li>(1010) (SUGERENCIA TOMADA Y FUNCIÓN RE-HECHA POR NEHUEN) IMPORTANTE: Revisar en su totalidad esta función, rehacer teniendo en cuenta lo que se pide en el TP:<br>
+    ● Misiones<br>
+    o Alta (Verificar que la nave que se le asigna esté lista para despegar, es decir en estado 1)<br>
+    o Baja (Cambia el estado de Lista a Cancelada, no se puede dar de baja una misión que está en el espacio).<br>
+    o Modificación<br>
+      ▪ Con esta función podemos lanzar misiones y finalizarlas, al cambiar su estado.<br>
+      ▪ Sólo se puede cambiar de:<br>
+        &emsp;● Lista a En vuelo<br>
+        &emsp;● En vuelo a Retornada<br>
+        &emsp;● En vuelo a Fallida<br>
+  </li>
+</ul>
+<hr>
+<h2>QA lib.h</h2>
+<h2>CAMBIOS + SUGERENCIAS</h2>
+<ul>
+  <li>Reordené los elementos de las estructuras para que respeten el orden demostrado en el archivo de consignas del TP.</li>
+  <li>En lugar de last_name, por ej. ¿Por qué no lastName? Lo mismo con el resto de las variables (camelCase).</li>
+  <li>En lugar de "starship" para las naves, un mejor término puede ser "spacecraft" o "spaceship". ¿Lo cambiamos?</li>
+  <li>El elemento "hours_flight" y todas sus apariciones de la estructura astronautas fueron renombradas a "flight_hours".</li>
+  <li>El elemento "ammount_flights" y todas sus apariciones de la estructura naves espaciales fueron renombradas a "number_of_flights".</li>
+  <li>El elemento "hours_flight" y todas sus apariciones de la estructura naves espaciales fueron renombradas a "flight_hours".</li>
+  <li>Los valores usados para el elemento status en la estructura naves espaciales no coinciden con los que el TP especifica. ¿Podríamos ver de ponerlos acorde a eso?</li>
+  <li>El elemento "ID_ship" y todas sus apariciones de la estructura misiones fueron renombradas a "ship_ID".</li>
+  <li>El elemento "destiny" y todas sus apariciones de la estructura misiones fueron renombradas a "destination".</li>
+  <li>El elemento "crewmans" y todas sus apariciones de la estructura misiones fueron renombradas a "crewmen".</li>
+  <li>El elemento "details_of_mission" y todas sus apariciones de la estructura misiones fueron renombradas a "mission_details".</li>
+  <li>El elemento "ammount_crewmans" y todas sus apariciones de la estructura misiones fueron renombradas a "crewman_amount".</li>
+  <li>Renombradas las funciones "showAmmountFlys", "changeAmmountFlys" y "changeAmmountFlysbyUser" por: "showFlightsAmount", "changeFlightsAmount" y "changeFlightsAmountByUser", respectivamente.</li>
+  <li>Renombrada la función "ChangeMissionDestiny" por "ChangeMissionDestination".</li>
+  <li>Renombradas las funciones "ChangeFlyTime" y "ChangeFlyTimebyUser" por: "ChangeFlightTime" y "ChangeFlightTimeByUser".</li>
+</ul>
+<h2>REVISAR</h2>
+<ul>
+  <li>(88) En el comentario, revisar los números que definen el estado de la nave.</li>
+  <li>Agregar comentarios breves desarrollando qué hace cada función, a TODAS las funciones que les falten comentario. (Hacerlo por más básico que sea).</li>
+  <li>(23) ¿Habría que especificar las especialidades y ponerles códigos numéricos? ¿O se puede dejar medio libre a la imaginación?</li>
+</ul>
+<hr>
+<h2>QA main.c</h2>
+
+<ul>
+  
+  <li>Sin comentarios.</li>
+</ul>
+
+<footer> <hr><nav>
+	
+      <a href="index.html">Inicio</a> | <a href="Diario.html">Diario</a> | <a href="Documentacion.html">Documentacion</a> | 
+      <a href="Matriz.html">Matriz de Soluciones</a> | 
+      <a href="QA.html">Revision QA</a>
+   
+</footer>
+</body>
+</html>
