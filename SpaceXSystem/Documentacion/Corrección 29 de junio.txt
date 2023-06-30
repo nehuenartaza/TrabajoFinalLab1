@@ -1,0 +1,2 @@
+Eloy creó las funciones isValidSpaceshipID, isValidDestination, isValidShipment y isAstronautInMission para hacer las verificaciones en registerMission, corrigió posibles errores en las funciones de naves y astronautas.
+Nehuen corrigió las funciones de modificar los campos de misiones agregando system("pause") para facilitar la comprensión de lo que ocurre, corrigió la función showMissionsByID ya que nunca salía del bucle de ingresar ID.

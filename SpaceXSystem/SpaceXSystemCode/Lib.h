@@ -116,6 +116,10 @@ int getLastMissionID();
 bool firstMission();
 int getTotalMissions();
 void showMissionsByID();
+bool isValidSpaceshipID(int, stSpaceship*, int);
+bool isValidDestination(int);
+bool isValidShipment(int);
+bool isAstronautInMission(int, stMission*, int);
 
 //Menu
 void mainMenu();
