@@ -98,13 +98,13 @@ void autoChangeSpaceshipStatus(int IDsearch, int flag, int option);     // Cambi
 void registerMission();
 void saveMission(stMission);
 int confirmMissionID(int);
+int selectMission();
 void changeMissionStarshipID();
 void changeMissionDetails();
 void changeMissionShipment();
 void changeMissionDestination();
 void changeMissionCrewmanList();
 void changeMissionStatus();
-int selectMission();
 void showMissions();
 int getLastMissionID();
 bool firstMission();

@@ -58,6 +58,7 @@ void registerAstronaut()        //Registra astronauta
         system("cls");
     }
 }
+
 void saveAstronaut(stAstronaut user)    //Guarda astronauta en archivo
 {
     FILE *file = fopen(Fastronauts, "ab");
@@ -67,6 +68,7 @@ void saveAstronaut(stAstronaut user)    //Guarda astronauta en archivo
         fclose(file);
     }
 }
+
 bool confirmAstronautID(int ID)     //cambiado, retornaba una flag, ahora retorna un boleano
 {
     bool flag = false;
@@ -85,6 +87,7 @@ bool confirmAstronautID(int ID)     //cambiado, retornaba una flag, ahora retorn
     }
     return flag;
 }
+
 void changeAstronautNickname()//cambia el apodo del Astronauta
 {
     stAstronaut user;
@@ -112,6 +115,7 @@ void changeAstronautNickname()//cambia el apodo del Astronauta
         fclose(file);
     }
 }
+
 void changeAstronautAge() //Cambiar la edad de un astronauta
 {
     stAstronaut user;
@@ -138,6 +142,7 @@ void changeAstronautAge() //Cambiar la edad de un astronauta
         fclose(file);
     }
 }
+
 void changeAstronautSpeciality() //Cambiar la especialidad
 {
     stAstronaut user;
@@ -165,6 +170,7 @@ void changeAstronautSpeciality() //Cambiar la especialidad
         fclose(file);
     }
 }
+
 void changeAstronautFlightTime()        //cambiar el tiempo de vuelo
 {
     stAstronaut user;
@@ -194,6 +200,7 @@ void changeAstronautFlightTime()        //cambiar el tiempo de vuelo
         fclose(file);
     }
 }
+
 void changeAstronautHoursSpaceStation()     //cambia el tiempo en la estacion espacial
 {
     stAstronaut user;
@@ -222,6 +229,7 @@ void changeAstronautHoursSpaceStation()     //cambia el tiempo en la estacion es
         fclose(file);
     }
 }
+
 void changeAstronautAmmountMissions()
 {
     stAstronaut user;
@@ -250,6 +258,7 @@ void changeAstronautAmmountMissions()
         fclose(file);
     }
 }
+
 void changeAstronautStatus()
 {
     stAstronaut user;
@@ -282,6 +291,7 @@ void changeAstronautStatus()
         fclose(file);
     }
 }
+
 int selectAstronaut()       //Selecciona un astronauta y retorna la posición del mismo
 {
     stAstronaut user;
@@ -313,6 +323,7 @@ int selectAstronaut()       //Selecciona un astronauta y retorna la posición del
     }
     return pos;
 }
+
 void showAstronauts()      //Muestra la totalidad del contenido del archivo de astronautas
 {
     system("cls");
@@ -345,6 +356,7 @@ void showAstronauts()      //Muestra la totalidad del contenido del archivo de a
         system("pause");
     }
 }
+
 void showAstronautByID()
 {
     stAstronaut user;
@@ -391,6 +403,7 @@ void showAstronautByID()
         }
     }
 }
+
 int astronautAvailability(int ID)      // Retorna la disponibilidad del astronauta, 1-activo, 2-retirado, NULL-no existe
 {
     stAstronaut user;
@@ -417,6 +430,7 @@ int astronautAvailability(int ID)      // Retorna la disponibilidad del astronau
     }
     return availability;
 }
+
 int getLastAstronautID()        //Toma la última ID de astronauta registrada y la retorna
 {
     stAstronaut user;
@@ -429,6 +443,7 @@ int getLastAstronautID()        //Toma la última ID de astronauta registrada y l
     }
     return user.ID;
 }
+
 int getTotalAstronauts()        //Retorna la cantidad total de registros de astronautas
 {
     int totalRegisters = 0;
@@ -441,6 +456,7 @@ int getTotalAstronauts()        //Retorna la cantidad total de registros de astr
     }
     return totalRegisters;
 }
+
 bool firstAstronaut()                           //verifica si al menos hay un astronauta registrado
 {
     bool first = false;
@@ -456,6 +472,7 @@ bool firstAstronaut()                           //verifica si al menos hay un as
     }
     return first;
 }
+
 int makeListOfAstronautsForMission(stAstronaut list[])
 {
     stAstronaut user;
@@ -476,6 +493,7 @@ int makeListOfAstronautsForMission(stAstronaut list[])
     }
     return i;
 }
+
 
 //Naves
 void saveSpaceship(stSpaceship spaceship)          //Guarda en la ultima posicion del archivo la nave recibida por parametro
@@ -587,8 +605,6 @@ void changeSpaceshipStatus()                // Cambia el estado de la nave
         fclose(archive);
     }
 }
-
-
 
 bool isOnMission(int ID)
 {
@@ -865,10 +881,8 @@ void changeSpaceshipFlightsAmount() //cambia la cantidad de vuelos de la nave
     changeSpaceshipFlightTime();
 }
 
-
 int selectSpaceship()   //selecciona una nave y retorna la posicion de la misma
 {
-    stSpaceship spaceship;
     FILE* archive;
     archive = fopen(Fstarships, "rb");
     int ID = 0;
@@ -894,6 +908,7 @@ int selectSpaceship()   //selecciona una nave y retorna la posicion de la misma
 
     return ID;
 }
+
 //arreglado
 int getTotalSpaceships()        //Retorna la cantidad total de registros de naves
 {
@@ -942,7 +957,6 @@ void changeSpaceshipFlightTime()
         fclose(archive);
     }
 }
-
 
 bool firstSpaceShip()                                               //verifica si hay al menos una nave registrada
 {
@@ -1002,7 +1016,6 @@ void autoChangeSpaceshipStatus(int IDsearch, int flag, int option)    //cambia e
 
 
 //Misiones
-
 bool isValidSpaceshipID(int shipID, stSpaceship* spaceships, int totalSpaceshipsList)
 {
     bool valid = false;
@@ -1015,14 +1028,17 @@ bool isValidSpaceshipID(int shipID, stSpaceship* spaceships, int totalSpaceships
     }
     return valid;
 }
+
 bool isValidDestination(int destination)
 {
     return (destination >= 1 && destination <= 3);
 }
+
 bool isValidShipment(int shipment)
 {
     return (shipment >= 1 && shipment <= 2);
 }
+
 bool isAstronautInMission(int astronautID, stMission* mission, int crewmanAmount)
 {
     for (int i = 0; i < crewmanAmount; i++)
@@ -1034,6 +1050,7 @@ bool isAstronautInMission(int astronautID, stMission* mission, int crewmanAmount
     }
     return false;
 }
+
 void registerMission()
 {
     stSpaceship spaceships[300];
@@ -1167,6 +1184,7 @@ void registerMission()
         system("pause");
     }
 }
+
 void saveMission(stMission the_mission)     //Guarda la misión en un archivo
 {
     FILE *file = fopen(Fmissions, "ab");
@@ -1181,12 +1199,15 @@ void changeMissionStarshipID()              //Se cambia la nave que se va a util
 {
     stMission mission;
     stSpaceship spaceships[300];
+    int pos = selectMission();
     int lastID = 0;
     int totalSpaceships = makeListOfSpaceshipsForMission(spaceships);
     bool flag = false;      //Confirma si la ID de la nave existe o no en el arreglo
     FILE *file = fopen(Fmissions, "r+b");
     if ( file != NULL && totalSpaceships != 0 )
     {
+        fseek(file, sizeof(stMission) * (pos -1), SEEK_SET);
+        fread(&mission, sizeof(stMission), 1, file);
         do {
             for ( int i = 0; i < totalSpaceships; i++) {
                 printSpaceshipData(spaceships[i]);
@@ -1203,20 +1224,21 @@ void changeMissionStarshipID()              //Se cambia la nave que se va a util
             if ( flag != 1 ) {
                 pprintf ( "ID de nave no existente o nave no lista para su uso, intente de nuevo.\n" );
                 system("pause");
+                system("cls");
             }
         } while ( flag != true );
-        stMission aux;
-        fseek( file, 0, SEEK_SET);
 
-        while ( !feof(file) && flag == true ) {
-            fread(&aux, sizeof(stMission), 1, file);
-            if ( aux.ship_ID == mission.ship_ID ) {
-                fseek(file, sizeof(stMission) * -1, SEEK_CUR);
-                fwrite(&mission, sizeof(stMission), 1, file);
-            }
+        if ( flag ) {
+            fseek(file, sizeof(stMission) * -1, SEEK_CUR);
+            fwrite(&mission, sizeof(stMission), 1, file);
+            fclose(file);
+            pprintf ( "La nave se ha cambiado correctamente\n");
+            system("pause");
         }
-        fclose(file);
-    }
+    } else {
+            pprintf ( "No hay ninguna nave disponible\n");
+            system("pause");
+        }
 }
 
 void changeMissionDetails()                 //Cambia la breve descripción de la misión
@@ -1234,6 +1256,8 @@ void changeMissionDetails()                 //Cambia la breve descripción de la 
         fseek(file, sizeof(stMission) * -1, SEEK_CUR);
         fwrite(&mission, sizeof(stMission), 1, file);
         fclose(file);
+        pprintf ( "Los detalles se cambiaron correctamente\n");
+        system("pause");
     }
 }
 
@@ -1253,18 +1277,18 @@ void changeMissionShipment()                //Cambia el cargamento de la misión
             pprintf ( "Cargamento no existente, pruebe de nuevo. \n" );
             scanf ( "%d", &mission.shipment );
         }
-        pprintf ( "Cargamento modificado con exito\n");
-        system("pause");
         fseek(file, sizeof(stMission) * -1, SEEK_CUR);
         fwrite(&mission, sizeof(stMission), 1, file);
         fclose(file);
+        pprintf ( "Cargamento modificado con exito\n");
+        system("pause");
     }
 }
 
 void changeMissionDestination()             //Cambia el destino de la misión
 {
     stMission mission;
-    int pos = selectMission();
+    int pos = selectMission();                  //unico error que no se le encontró la solución
     FILE *file = (Fmissions, "r+b");
     if ( file != NULL )
     {
@@ -1400,7 +1424,7 @@ void changeMissionStatus()                  //Cambia el estado de la misión, 1-l
     }
 }
 
-int getTotalMissions()        //Retorna la cantidad total de registros de Mishions
+int getTotalMissions()        //Retorna la cantidad total de registros de misiones
 {
     int totalRegisters = 0;
     FILE *file = fopen(Fmissions, "rb");
@@ -1510,7 +1534,6 @@ void showMissions() //muestra todas las misiones registradas
     }
 }
 
-
 void showMissionsByID()                         //muestra la mision Por ID
 {
     stMission mission;
@@ -1530,7 +1553,7 @@ void showMissionsByID()                         //muestra la mision Por ID
                 pprintf ( "Si quiere volver a intentar, ingrese 1\n");
                 scanf ( "%d", &option);
             }
-        } while(ID < 1 || ID > getTotalMissions() && option == 1 );
+        } while( (ID < 1 || ID > getTotalMissions()) && option == 1 );
 
         fseek(file, sizeof(stMission) * (ID-1), SEEK_SET);
         fread(&mission, sizeof(stMission), 1, file);
@@ -2282,7 +2305,7 @@ void modifyMissionMenu()
     do
     {
         system("cls");
-        pprintf("1- Modificar tripulantes\n"); //amongus
+        pprintf("1- Modificar tripulantes\n");
         pprintf("2- Modificar destino\n");
         pprintf("3- Modificar detalles\n");
         pprintf("4- Modificar cargamento\n");
