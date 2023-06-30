@@ -55,50 +55,44 @@ typedef struct
 } stUserData;
 
 //Astronautas
-void registerAstronaut();
-void saveAstronaut(stAstronaut);
-int confirmAstronautID(int);
-void changeAstronautNickname();
-void changeAstronautAge();
-void changeAstronautSpeciality();
-void changeAstronautFlightTime();
-void changeAstronautHoursSpaceStation();
-void changeAstronautAmmountMissions();
-void changeAstronautStatus();
-int selectAstronaut();
-void showAstronauts();
-int astronautAvailability(int);
-int getLastAstronautID();
-int getTotalAstronauts();
-bool firstAstronaut();
-void showAstronautByID();
-int makeListOfAstronautsForMission(stAstronaut[]);
+void registerAstronaut();                   // Registra un astronauta
+void saveAstronaut(stAstronaut user);       // Guarda los datos de un astronauta en el sistema
+bool confirmAstronautID(int ID);            // Verifica si existe un astronauta con el ID dado
+void changeAstronautNickname();             // Cambia el apodo de un astronauta
+void changeAstronautAge();                  // Cambia la edad de un astronauta
+void changeAstronautSpeciality();           // Cambia la especialidad de un astronauta
+void changeAstronautFlightTime();           // Cambia el tiempo de vuelo de un astronauta
+void changeAstronautHoursSpaceStation();    // Cambia las horas en la estación espacial de un astronauta
+void changeAstronautAmmountMissions();      // Cambia la cantidad de misiones realizadas por un astronauta
+void changeAstronautStatus();               // Cambia el estado de un astronauta
+int selectAstronaut();                      // Selecciona un astronauta existente
+void showAstronauts();                      // Muestra la lista de todos los astronautas registrados
+void showAstronautByID();                   // Muestra los datos de un astronauta específico según su ID
+bool firstAstronaut();                      //Verifica si hay un astronauta registrado
 
 //Naves
-void saveSpaceship(stSpaceship starship);                           // Guarda en la ultima posicion del archivo la nave recibida por parametro
-void registerSpaceship();                                           // Carga de datos y en archivo una nueva nave. Con parametros en automatico
-int getLastSpaceshipID();                                           // Obtiene la ultima ID del registro
-void changeSpaceshipStatus();                                        // Cambia el estado de la nave
-int changeSpaceshipStatusOptions();                                        // Retorna el estado de la nave elegida: 1 lista para su uso, 2 en mision, 3 en mantenimiento, 4 de baja
-void showSpaceshipByID();                                           // Verifica si la nave existe, la busca y permite modificar sus datos o visualizarla
-void showSpaceship(int);                                         // Muestra una nave por su ID
-bool spaceshipExistByID(int);                                    // Retorna verdadero si la nave existe en el archivo en base al ID recibido
-void printSpaceshipData(stSpaceship);                      // Imprime por pantalla los datos de la nave
-void printSpaceshipStatus(int);                     // Imprime el estado de la nave: 1 lista para su uso, 2 en mision, 3 en mantenimiento, 4 de baja
-int spaceshipStatus(int);                                        // Retorna el estado de la nave
-void printAllStarships();                                           // Muestra todas las naves cargadas en el archivo
-void changeSpaceshipFlightTime();
-void showFlightTime(int);                                        // Muestra el tiempo de vuelo por ID
-void showFlightsAmount(int);                                     // Muestra la cantidad de vuelos
-void changeSpaceshipFlightsAmount();                          //
-bool firstSpaceShip();
-void autoChangeSpaceshipStatus(int, int, int);
-void selectSpaceshipType(stSpaceship*);
-int makeListOfSpaceshipsForMission(stSpaceship[]);
-void showAllSpaceships();
-int getTotalSpaceships();
-int selectSpaceship();
-bool isOnMission(int ID);
+void saveSpaceship(stSpaceship spaceship);                              // Guarda en la ultima posicion del archivo la nave recibida por parametro
+void registerSpaceship();                                               // Carga de datos y en archivo una nueva nave. Con parametros en automatico
+void selectSpaceshipType(stSpaceship *type);                            // Permite seleccionar el tipo de nave y asignarlo al puntero type
+int getLastSpaceshipID();                                               // Obtiene la ultima ID del registro
+void changeSpaceshipStatus();                                           // Cambia el estado de la nave
+bool isOnMission(int ID);                                               // Verifica si la nave con el ID dado está en misión
+int changeSpaceshipStatusOptions();                                     // Retorna el estado de la nave elegida, 1 lista para su uso, 2 en mision, 3 en mantenimiento, 4 de baja
+void showSpaceshipByID();                                               // Verifica si la nave existe, la busca y permite modificar sus datos o visualizarla
+void showSpaceship(int ID);                                             // Muestra una nave por su ID
+bool spaceshipExistByID(int ID);                                        // Retorna verdadero si la nave existe en el archivo en base al ID Recibido
+void printSpaceshipData(stSpaceship spaceship);                         // Imprime por pantalla los datos de la nave
+void printSpaceshipStatus(int spaceshipStatus);                         // 1 lista para su uso, 2 en mision, 3 en mantenimiento, 4 de baja
+int spaceshipStatus(int ID);                                            // Retorna el estado de la nave
+void showAllSpaceships();                                               // Muestra todas las naves cargadas en el archivo
+void showFlightTime(int ID);                                            // Muestra el tiempo de vuelo por ID
+void showFlightsAmount(int ID);                                         // Muestra la cantidad de vuelos de una nave
+void changeSpaceshipFlightsAmount();                                    // Cambia la cantidad de vuelos de la nave
+int selectSpaceship();                                                  // Selecciona una nave y retorna la posicion de la misma
+int getTotalSpaceships();                                               // Retorna la cantidad total de registros de naves
+void changeSpaceshipFlightTime();                                       // Cambia la cantidad de horas de vuelo de la nave
+bool firstSpaceShip();                                                  // Verifica si hay al menos una nave registrada
+void autoChangeSpaceshipStatus(int IDsearch, int flag, int option);     // Cambia el estado de una nave automáticamente cuando una misión es retornada, falla o se cancela, 1 lista para su uso, 2 en misión, 3 en mantenimiento, 4 de baja
 
 //Misiones
 void registerMission();

@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1688026758 source:c:\users\eloy\documents\github\trabajofinallab1\spacexsystem\spacexsystemcode\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Lib.h"
+
+1688085886 c:\users\eloy\documents\github\trabajofinallab1\spacexsystem\spacexsystemcode\lib.h
+	<stdio.h>
+	<time.h>
+	<stdbool.h>
+	<windows.h>
+
+1688091102 source:c:\users\eloy\documents\github\trabajofinallab1\spacexsystem\spacexsystemcode\lib.c
+	"Lib.h"
+	<unistd.h>
+
